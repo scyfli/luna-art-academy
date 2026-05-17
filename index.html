@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Luna Art Academy · Wilmington, Delaware</title>
+<meta name="description" content="Where Wilmington creates together. Donation-based music, painting, and rotating art workshops taught by local artists in Wilmington, Delaware." />
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<link rel="stylesheet" href="assets/site.css" />
+<style>
+  /* ===== Home-specific styles ===== */
+  .hero {
+    position: relative;
+    padding: 60px 0 100px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero::before {
+    /* warm radial halo behind the moon side */
+    content: "";
+    position: absolute;
+    right: -10%; top: 0;
+    width: 60vw; height: 100%;
+    background:
+      radial-gradient(closest-side at 50% 50%, rgba(245,197,24,0.18), transparent 70%),
+      radial-gradient(closest-side at 40% 40%, rgba(107,45,140,0.10), transparent 65%);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: center;
+    min-height: min(90vh, 800px);
+  }
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; min-height: auto; }
+  }
+  .hero-left .eyebrow { color: var(--rose); margin-bottom: 28px; }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: var(--step-6);
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 30px;
+    text-wrap: balance;
+  }
+  .hero-title .script {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--plum);
+    letter-spacing: 0;
+  }
+  .hero-title .gold {
+    display: inline-block;
+    color: var(--gold-deep);
+    background: linear-gradient(180deg, var(--moon) 0%, var(--gold) 50%, var(--gold-deep) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-lede {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin-bottom: 36px;
+    text-wrap: pretty;
+  }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .hero-stats-inline {
+    display: flex; gap: 28px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+  .hero-stats-inline .stat {
+    border-left: 2px solid var(--gold);
+    padding-left: 14px;
+  }
+  .hero-stats-inline .num {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--plum);
+    line-height: 1;
+  }
+  .hero-stats-inline .lbl {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 4px;
+  }
+
+  /* Right side: composition with moon, swirls, stars */
+  .hero-right {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .moon-stage {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .moon-bg {
+    /* night sky disc behind the moon */
+    position: absolute;
+    width: 78%; height: 78%;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, #4B3068 0%, #2A1538 60%, #1A0922 100%);
+    box-shadow:
+      inset 0 0 60px rgba(245,197,24,0.15),
+      0 30px 80px rgba(42,21,56,0.35);
+    overflow: hidden;
+  }
+  .moon-bg::before {
+    /* nebula glow */
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(at 30% 30%, rgba(214,51,108,0.25), transparent 50%),
+      radial-gradient(at 70% 60%, rgba(31,138,140,0.25), transparent 50%),
+      radial-gradient(at 50% 80%, rgba(245,197,24,0.18), transparent 55%);
+    mix-blend-mode: screen;
+  }
+  .moon-bg .sparkle {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: #FBF6EC;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(251,246,236,0.8);
+    animation: sparkle 4s ease-in-out infinite;
+  }
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.7); }
+    50% { opacity: 1; transform: scale(1.4); }
+  }
+  .moon-img {
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    filter: drop-shadow(0 30px 60px rgba(245,197,24,0.25))
+            drop-shadow(0 10px 30px rgba(42,21,56,0.3));
+    animation: drift 9s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-12px) rotate(0.5deg); }
+  }
+
+  /* Floating stars around */
+  .star-cluster {
+    position: absolute;
+    width: 110%; height: 110%;
+    left: -5%; top: -5%;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .star-cluster .s {
+    position: absolute;
+    color: var(--moon);
+  }
+  .star-cluster .s svg { width: 100%; height: 100%; }
+  .floating { animation: float 5s ease-in-out infinite; }
+
+  /* Swirl ornaments (paisley flourishes) */
+  .swirl {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  .swirl svg { width: 100%; height: 100%; }
+
+  /* ===== Stat band ===== */
+  .stat-band {
+    padding: 80px 0;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-band::before, .stat-band::after {
+    content: "";
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--moon);
+    opacity: 0.12;
+    filter: blur(60px);
+  }
+  .stat-band::before { left: -50px; top: -50px; }
+  .stat-band::after { right: -50px; bottom: -50px; background: var(--rose); }
+  .stat-band .wrap { position: relative; }
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 36px;
+    align-items: start;
+  }
+  @media (max-width: 880px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+  .stat-cell {
+    text-align: center;
+    position: relative;
+  }
+  .stat-cell + .stat-cell::before {
+    content: "";
+    position: absolute;
+    left: -18px; top: 12px; bottom: 12px;
+    width: 1px;
+    background: var(--ink-line);
+  }
+  @media (max-width: 880px) { .stat-cell + .stat-cell::before { display: none; } }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 1.8rem + 3vw, 4.2rem);
+    line-height: 1;
+    color: var(--plum);
+    display: block;
+  }
+  .stat-num .suffix {
+    color: var(--rose);
+    font-size: 0.6em;
+    margin-left: 2px;
+  }
+  .stat-lbl {
+    margin-top: 14px;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .stat-desc {
+    margin-top: 8px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-mute);
+    font-size: 0.92rem;
+  }
+
+  /* ===== Mission ribbon ===== */
+  .mission {
+    padding: 140px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .mission .quote-mark {
+    font-family: var(--font-display);
+    font-size: 8rem;
+    line-height: 0.5;
+    color: var(--gold);
+    opacity: 0.4;
+    margin-bottom: 14px;
+  }
+  .mission blockquote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 1.1rem + 2vw, 2.8rem);
+    line-height: 1.3;
+    color: var(--ink);
+    max-width: 26ch;
+    margin: 0 auto;
+    text-wrap: balance;
+  }
+  .mission blockquote em {
+    color: var(--rose);
+    font-weight: 600;
+  }
+  .mission cite {
+    display: block;
+    margin-top: 32px;
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--plum);
+  }
+
+  /* ===== Pillars ===== */
+  .pillars {
+    padding: 100px 0;
+    position: relative;
+  }
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 980px) { .pillar-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .pillar {
+    position: relative;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .pillar:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
+  .pillar:nth-child(2) { transform: translateY(28px); }
+  .pillar:nth-child(2):hover { transform: translateY(22px); }
+  @media (max-width: 980px) { .pillar:nth-child(2), .pillar:nth-child(2):hover { transform: none; } }
+  .pillar .paint { aspect-ratio: 4 / 3; border-radius: 0; }
+  .pillar-body { padding: 28px 28px 32px; }
+  .pillar-num {
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    letter-spacing: 0.18em;
+    color: var(--rose);
+    margin-bottom: 12px;
+  }
+  .pillar h3 { font-size: var(--step-3); margin-bottom: 12px; }
+  .pillar p { color: var(--ink-soft); margin-bottom: 18px; line-height: 1.55; }
+  .pillar ul {
+    list-style: none; padding: 0; margin: 0 0 22px;
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .pillar ul li {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    padding: 5px 10px;
+    background: var(--cream);
+    border-radius: 999px;
+    font-weight: 500;
+  }
+
+  /* ===== Rotating method calendar ===== */
+  .rotating {
+    padding: 110px 0;
+    background:
+      linear-gradient(180deg, var(--ink) 0%, var(--plum-deep) 100%);
+    color: var(--bone);
+    position: relative;
+    overflow: hidden;
+  }
+  .rotating::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(at 80% 20%, rgba(245,197,24,0.18), transparent 50%),
+      radial-gradient(at 20% 80%, rgba(214,51,108,0.18), transparent 50%);
+    pointer-events: none;
+  }
+  .rotating h2 { color: var(--bone); }
+  .rotating .eyebrow { color: var(--moon); }
+  .rotating .desc { color: rgba(251,246,236,0.78); }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    position: relative;
+  }
+  @media (max-width: 880px) { .method-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 540px) { .method-grid { grid-template-columns: repeat(2, 1fr); } }
+  .method {
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    background: rgba(251,246,236,0.04);
+    border: 1px solid rgba(251,246,236,0.1);
+    padding: 16px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: background 0.3s ease, transform 0.3s ease, border 0.3s ease;
+    cursor: default;
+  }
+  .method:hover {
+    background: rgba(245,197,24,0.12);
+    border-color: var(--moon);
+    transform: scale(1.04);
+  }
+  .method .m {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    color: var(--moon);
+    font-weight: 700;
+  }
+  .method .name {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.15;
+    color: var(--bone);
+  }
+
+  /* ===== Founder section ===== */
+  .founder {
+    padding: 120px 0;
+  }
+  .founder-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  @media (max-width: 880px) { .founder-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .founder-portrait {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-xl);
+    position: relative;
+  }
+  .founder-portrait .deco {
+    position: absolute;
+    inset: -24px;
+    border: 2px dashed var(--gold);
+    border-radius: var(--radius-xl);
+    opacity: 0.4;
+    pointer-events: none;
+    animation: rotate-slow 60s linear infinite;
+  }
+  @keyframes rotate-slow {
+    to { transform: rotate(360deg); }
+  }
+  .founder-text h2 { font-size: var(--step-5); margin-bottom: 18px; }
+  .founder-text .signature {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--rose);
+    margin-top: 32px;
+  }
+  .founder-text .role {
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 4px;
+  }
+  .founder-text p { color: var(--ink-soft); line-height: 1.65; margin-bottom: 18px; }
+
+  /* ===== Events strip ===== */
+  .events-strip {
+    padding: 100px 0;
+    background: var(--cream);
+    position: relative;
+  }
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 880px) { .events-grid { grid-template-columns: 1fr; } }
+  .event-card {
+    background: var(--shell);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    border: 1px solid var(--ink-line);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .event-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+  .event-card .paint { aspect-ratio: 16 / 10; border-radius: 0; }
+  .event-body { padding: 24px 26px 28px; }
+  .event-date {
+    display: flex; gap: 8px;
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    letter-spacing: 0.06em;
+    color: var(--rose);
+    margin-bottom: 10px;
+  }
+  .event-date strong { color: var(--plum); font-size: 1.3em; }
+  .event-card h3 { font-size: var(--step-2); margin-bottom: 8px; line-height: 1.15; }
+  .event-meta { font-size: 0.85rem; color: var(--ink-mute); margin-bottom: 14px; }
+
+  /* ===== Whale Building location ===== */
+  .location {
+    padding: 120px 0;
+  }
+  .loc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 980px) { .loc-grid { grid-template-columns: 1fr; } }
+  .map-card {
+    aspect-ratio: 5 / 4;
+    border-radius: var(--radius-xl);
+    background:
+      linear-gradient(180deg, #F0E6D2 0%, #E0D2B5 100%);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--ink-line);
+  }
+  .map-card .roads {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(45deg, transparent 48%, rgba(184,130,29,0.25) 49%, rgba(184,130,29,0.25) 51%, transparent 52%),
+      linear-gradient(135deg, transparent 48%, rgba(184,130,29,0.2) 49%, rgba(184,130,29,0.2) 51%, transparent 52%),
+      linear-gradient(0deg, transparent 48%, rgba(184,130,29,0.18) 49%, rgba(184,130,29,0.18) 51%, transparent 52%),
+      linear-gradient(90deg, transparent 48%, rgba(184,130,29,0.18) 49%, rgba(184,130,29,0.18) 51%, transparent 52%);
+    background-size: 60% 60%, 60% 60%, 80% 80%, 80% 80%;
+    background-position: 30% 30%, 30% 30%, center, center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+  }
+  .map-card .pin {
+    position: absolute;
+    top: 42%; left: 50%;
+    transform: translate(-50%, -100%);
+    text-align: center;
+  }
+  .map-card .pin .drop {
+    width: 44px; height: 44px;
+    border-radius: 50% 50% 50% 0;
+    background: var(--rose);
+    transform: rotate(-45deg);
+    box-shadow: 0 8px 20px rgba(214,51,108,0.45);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto;
+  }
+  .map-card .pin .drop::before {
+    content: "";
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--bone);
+    transform: rotate(45deg);
+  }
+  .map-card .pin .lbl {
+    margin-top: 14px;
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    color: var(--ink);
+    background: var(--bone);
+    padding: 6px 14px;
+    border-radius: 999px;
+    display: inline-block;
+    box-shadow: var(--shadow-soft);
+  }
+  .map-card .corridor {
+    position: absolute;
+    bottom: 18%; left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    width: 80%;
+  }
+  .map-card .corridor::before, .map-card .corridor::after {
+    content: "·";
+    margin: 0 12px;
+    color: var(--gold-deep);
+  }
+  .loc-text h2 { font-size: var(--step-5); margin-bottom: 18px; }
+  .loc-text p { color: var(--ink-soft); line-height: 1.65; margin-bottom: 14px; }
+  .loc-tags {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-top: 26px;
+  }
+
+  /* ===== Founding Circle teaser ===== */
+  .founding {
+    padding: 120px 0;
+    background:
+      radial-gradient(at 30% 20%, rgba(245,197,24,0.10), transparent 50%),
+      radial-gradient(at 70% 80%, rgba(214,51,108,0.10), transparent 50%),
+      var(--bone);
+  }
+  .tier-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-top: 60px;
+  }
+  @media (max-width: 980px) { .tier-row { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .tier-row { grid-template-columns: 1fr; } }
+  .tier-card {
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-lg);
+    padding: 24px 18px 22px;
+    text-align: center;
+    transition: transform 0.3s ease, border 0.3s ease, background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .tier-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--moon), var(--rose));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .tier-card:hover::before { transform: scaleX(1); }
+  .tier-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+  .tier-glyph {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--gold-deep);
+    margin-bottom: 12px;
+  }
+  .tier-name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .tier-price {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--plum);
+  }
+  .tier-cadence {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 4px;
+  }
+
+  /* ===== Newsletter ===== */
+  .newsletter {
+    padding: 100px 0;
+    background: var(--ink);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .newsletter::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(at 20% 50%, rgba(245,197,24,0.15), transparent 40%),
+      radial-gradient(at 80% 50%, rgba(214,51,108,0.12), transparent 40%);
+    pointer-events: none;
+  }
+  .newsletter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+  }
+  @media (max-width: 880px) { .newsletter-grid { grid-template-columns: 1fr; } }
+  .newsletter h2 { color: var(--bone); font-size: var(--step-4); }
+  .newsletter .desc { color: rgba(251,246,236,0.78); font-size: var(--step-1); margin-top: 12px; line-height: 1.5; max-width: 38ch; }
+  .newsletter form {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .newsletter input[type="email"] {
+    flex: 1; min-width: 240px;
+    padding: 16px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(251,246,236,0.2);
+    background: rgba(251,246,236,0.06);
+    color: var(--bone);
+    font: inherit;
+  }
+  .newsletter input[type="email"]::placeholder { color: rgba(251,246,236,0.5); }
+  .newsletter input[type="email"]:focus { outline: none; border-color: var(--moon); }
+  .newsletter .fine {
+    margin-top: 18px;
+    font-size: 0.78rem;
+    opacity: 0.65;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="pulse">Founding year 2026 · Wilmington, Delaware</div>
+    <div class="right">
+      <span class="hideS">A donation-supported arts academy.</span>
+      <a href="donate.html">Join the Founding Circle →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo" aria-label="Luna Art Academy home">
+      <img src="assets/logo.png" alt="Luna Art Academy" />
+      <div class="lockup">
+        Luna
+        <small>Art Academy</small>
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="artists.html">Artists</a></li>
+      <li><a href="get-involved.html">Get Involved</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="donate.html" class="btn btn-gold btn-sm">Donate</a>
+      <button class="nav-burger" aria-label="Open menu" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer">
+  <button class="close" aria-label="Close menu" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+  </button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="programs.html">Programs</a>
+  <a href="events.html">Events</a>
+  <a href="artists.html">Artists</a>
+  <a href="get-involved.html">Get Involved</a>
+  <a href="contact.html">Contact</a>
+  <a href="donate.html">Donate</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" data-hero data-screen-label="01 Hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-left" data-reveal="slide-left">
+        <div class="eyebrow">Wilmington · Delaware · Founding 2026</div>
+        <h1 class="hero-title">
+          Where Wilmington<br/>
+          <span class="script">creates</span> <span class="gold">together.</span>
+        </h1>
+        <p class="hero-lede">
+          A donation-supported, multicultural arts academy on the river.
+          Music, painting, and a rotating method every month — taught by
+          local artists, open to every age, every story, every income.
+        </p>
+        <div class="hero-cta">
+          <a href="programs.html" class="btn btn-primary">
+            Explore the programs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="donate.html" class="btn-link">
+            Become a founding donor
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="hero-stats-inline">
+          <div class="stat"><div class="num">500+</div><div class="lbl">Participants Year One</div></div>
+          <div class="stat"><div class="num">36+</div><div class="lbl">Workshops</div></div>
+          <div class="stat"><div class="num">25+</div><div class="lbl">Local Artists Paid</div></div>
+        </div>
+      </div>
+
+      <div class="hero-right" data-reveal>
+        <!-- Left swirl flourish -->
+        <div class="swirl" data-hero-swirl style="left:-8%; top: 18%; width:38%;">
+          <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--plum);">
+            <path d="M180 20 C 140 40, 100 30, 70 60 C 40 90, 50 130, 30 160 C 10 190, 20 220, 60 220" stroke-linecap="round"/>
+            <path d="M170 50 C 140 70, 110 60, 90 90" stroke-linecap="round"/>
+            <circle cx="60" cy="220" r="4" fill="currentColor"/>
+            <circle cx="30" cy="160" r="3" fill="currentColor"/>
+            <path d="M160 100 q -20 10, 0 25 q 20 -10, 0 -25 Z" fill="currentColor" opacity="0.6"/>
+            <path d="M120 150 q -16 8, 0 20 q 16 -8, 0 -20 Z" fill="var(--rose)" opacity="0.7"/>
+            <circle cx="40" cy="200" r="2" fill="var(--moon)"/>
+            <circle cx="80" cy="180" r="2" fill="var(--moon)"/>
+          </svg>
+        </div>
+
+        <!-- Right swirl flourish -->
+        <div class="swirl" data-hero-swirl style="right:-6%; top: 30%; width:32%;">
+          <svg viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--rose); transform: scaleX(-1);">
+            <path d="M180 20 C 140 40, 100 30, 70 60 C 40 90, 50 130, 30 160 C 10 190, 20 220, 60 220" stroke-linecap="round"/>
+            <path d="M170 50 C 140 70, 110 60, 90 90" stroke-linecap="round"/>
+            <path d="M160 100 q -20 10, 0 25 q 20 -10, 0 -25 Z" fill="var(--orange)" opacity="0.7"/>
+            <path d="M120 150 q -16 8, 0 20 q 16 -8, 0 -20 Z" fill="currentColor" opacity="0.6"/>
+            <circle cx="40" cy="200" r="3" fill="var(--teal)"/>
+          </svg>
+        </div>
+
+        <!-- Floating stars -->
+        <div class="star-cluster">
+          <div class="s floating" data-hero-star style="top: 8%; left: 18%; width: 18px; height: 18px; animation-delay: 0s;"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1l3 8 8 1-6 6 2 8-7-4-7 4 2-8-6-6 8-1z"/></svg></div>
+          <div class="s floating" data-hero-star style="top: 4%; left: 50%; width: 14px; height: 14px; animation-delay: 0.4s;"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1l3 8 8 1-6 6 2 8-7-4-7 4 2-8-6-6 8-1z"/></svg></div>
+          <div class="s floating" data-hero-star style="top: 12%; right: 14%; width: 12px; height: 12px; animation-delay: 0.8s;"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1l3 8 8 1-6 6 2 8-7-4-7 4 2-8-6-6 8-1z"/></svg></div>
+          <div class="s floating" data-hero-star style="top: 30%; right: 4%; width: 10px; height: 10px; animation-delay: 1.2s;"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1l3 8 8 1-6 6 2 8-7-4-7 4 2-8-6-6 8-1z"/></svg></div>
+          <div class="s floating" data-hero-star style="bottom: 12%; left: 8%; width: 14px; height: 14px; animation-delay: 1.6s;"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1l3 8 8 1-6 6 2 8-7-4-7 4 2-8-6-6 8-1z"/></svg></div>
+          <div class="s floating" data-hero-star style="bottom: 6%; right: 22%; width: 18px; height: 18px; animation-delay: 2s;"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1l3 8 8 1-6 6 2 8-7-4-7 4 2-8-6-6 8-1z"/></svg></div>
+        </div>
+
+        <!-- Moon stage -->
+        <div class="moon-stage">
+          <div class="moon-bg" aria-hidden="true">
+            <div class="sparkle" style="top: 15%; left: 22%; animation-delay: 0s;"></div>
+            <div class="sparkle" style="top: 30%; left: 70%; animation-delay: 0.6s;"></div>
+            <div class="sparkle" style="top: 55%; left: 30%; animation-delay: 1.2s;"></div>
+            <div class="sparkle" style="top: 70%; left: 60%; animation-delay: 1.8s;"></div>
+            <div class="sparkle" style="top: 80%; left: 25%; animation-delay: 2.4s;"></div>
+            <div class="sparkle" style="top: 45%; left: 80%; animation-delay: 3s;"></div>
+            <div class="sparkle" style="top: 25%; left: 45%; animation-delay: 1.5s;"></div>
+            <div class="sparkle" style="top: 65%; left: 80%; animation-delay: 2.2s;"></div>
+          </div>
+          <img class="moon-img" data-hero-moon src="assets/logo.png" alt="Luna Art Academy logo — illustrated golden moon, ornate purple and magenta swirls, gold filigree" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STAT BAND ===== -->
+<section class="stat-band" data-screen-label="02 Stats">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat-cell" data-reveal>
+        <span class="stat-num"><span data-counter="500">0</span><span class="suffix">+</span></span>
+        <div class="stat-lbl">Participants served</div>
+        <div class="stat-desc">across all ages, year one</div>
+      </div>
+      <div class="stat-cell" data-reveal style="--reveal-delay: 0.1s;">
+        <span class="stat-num"><span data-counter="36">0</span><span class="suffix">+</span></span>
+        <div class="stat-lbl">Workshops & classes</div>
+        <div class="stat-desc">music, painting, rotating method</div>
+      </div>
+      <div class="stat-cell" data-reveal style="--reveal-delay: 0.2s;">
+        <span class="stat-num"><span data-counter="25">0</span><span class="suffix">+</span></span>
+        <div class="stat-lbl">Local artists engaged</div>
+        <div class="stat-desc">paid as teachers & performers</div>
+      </div>
+      <div class="stat-cell" data-reveal style="--reveal-delay: 0.3s;">
+        <span class="stat-num">$<span data-counter="150">0</span><span class="suffix">K</span></span>
+        <div class="stat-lbl">Year-one goal</div>
+        <div class="stat-desc">layered, donation-supported</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MISSION ===== -->
+<section class="mission" data-screen-label="03 Mission">
+  <div class="wrap-narrow" data-reveal>
+    <div class="quote-mark">◑</div>
+    <blockquote>
+      Everyone deserves <em>space, tools, and community</em> to create.
+    </blockquote>
+    <cite>— Our mission, in one sentence</cite>
+  </div>
+</section>
+
+<!-- ===== PILLARS ===== -->
+<section class="pillars" data-screen-label="04 Programs">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">The three pillars</div>
+        <h2>A first instrument.<br/>A first brushstroke.<br/>A new method, every month.</h2>
+      </div>
+      <div class="desc">
+        Programs launch in three core areas, supported by a year-round
+        rhythm of artist visibility events. Lean by design, so we can
+        deliver consistently — and grow what works.
+      </div>
+    </div>
+
+    <div class="pillar-grid">
+      <article class="pillar" data-reveal>
+        <div class="paint p2">
+          <span class="tag">Pillar 01</span>
+          <span class="glyph" style="font-size: 7rem; opacity: 0.4;">♫</span>
+          <span class="label">Music Access — first-instrument nights</span>
+        </div>
+        <div class="pillar-body">
+          <div class="pillar-num">PILLAR 01</div>
+          <h3>Music Access</h3>
+          <p>Low-barrier, community-centered music learning — designed to
+            remove the intimidation that surrounds music education.</p>
+          <ul>
+            <li>Beginner workshops</li>
+            <li>Open jam sessions</li>
+            <li>First-instrument nights</li>
+            <li>Singer-songwriter circles</li>
+            <li>Youth rhythm circles</li>
+          </ul>
+          <a href="programs.html#music" class="btn-link">See the schedule
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pillar" data-reveal style="--reveal-delay: 0.1s;">
+        <div class="paint pwarm">
+          <span class="tag">Pillar 02</span>
+          <span class="glyph" style="font-size: 7rem; opacity: 0.45;">✦</span>
+          <span class="label">Painting & Visual Arts — community paint nights</span>
+        </div>
+        <div class="pillar-body">
+          <div class="pillar-num">PILLAR 02</div>
+          <h3>Painting & Visual Arts</h3>
+          <p>The easiest to launch first. Supplies are manageable, sessions
+            are flexible, and the work goes straight onto the walls.</p>
+          <ul>
+            <li>Community paint nights</li>
+            <li>Family art days</li>
+            <li>Beginner acrylic</li>
+            <li>Paint Your Story</li>
+            <li>Mural design</li>
+          </ul>
+          <a href="programs.html#painting" class="btn-link">See the schedule
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pillar" data-reveal style="--reveal-delay: 0.2s;">
+        <div class="paint p3">
+          <span class="tag">Pillar 03</span>
+          <span class="glyph" style="font-size: 7rem; opacity: 0.4;">◐</span>
+          <span class="label">Rotating Method — a new discipline each month</span>
+        </div>
+        <div class="pillar-body">
+          <div class="pillar-num">PILLAR 03</div>
+          <h3>Rotating Art Method</h3>
+          <p>A new method enters the rotation each month — keeping the
+            space fresh, the audience broad, and many local creatives
+            in front of a class.</p>
+          <ul>
+            <li>Photography</li>
+            <li>Spoken word</li>
+            <li>Printmaking</li>
+            <li>Collage</li>
+            <li>Dance</li>
+            <li>+ many more</li>
+          </ul>
+          <a href="programs.html#rotating" class="btn-link">See this year's rotation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ROTATING METHOD CALENDAR ===== -->
+<section class="rotating" data-screen-label="05 Rotating">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">Twelve months, twelve disciplines</div>
+        <h2 style="color: var(--bone);">A new method every month.</h2>
+      </div>
+      <div class="desc">
+        The Rotating Method keeps the space fresh and opens the door to
+        many more local artists as teachers. The year ahead, in rotation:
+      </div>
+    </div>
+
+    <div class="method-grid">
+      <div class="method" data-reveal><div class="m">JAN</div><div class="name">Photography</div></div>
+      <div class="method" data-reveal style="--reveal-delay:0.05s;"><div class="m">FEB</div><div class="name">Collage</div></div>
+      <div class="method" data-reveal style="--reveal-delay:0.10s;"><div class="m">MAR</div><div class="name">Spoken Word</div></div>
+      <div class="method" data-reveal style="--reveal-delay:0.15s;"><div class="m">APR</div><div class="name">Printmaking</div></div>
+      <div class="method" data-reveal style="--reveal-delay:0.20s;"><div class="m">MAY</div><div class="name">Dance</div></div>
+      <div class="method" data-reveal style="--reveal-delay:0.25s;"><div class="m">JUN</div><div class="name">Theater Games</div></div>
+      <div class="method" data-reveal style="--reveal-delay:0.30s;"><div class="m">JUL</div><div class="name">Public Art</div></div>
+      <div class="method" data-reveal style="--reveal-delay:0.35s;"><div class="m">AUG</div><div class="name">Fashion & Custom Clothing</div></div>
+      <div class="method" data-reveal style="--reveal-delay:0.40s;"><div class="m">SEP</div><div class="name">Cultural Heritage</div></div>
+      <div class="method" data-reveal style="--reveal-delay:0.45s;"><div class="m">OCT</div><div class="name">Digital Art</div></div>
+      <div class="method" data-reveal style="--reveal-delay:0.50s;"><div class="m">NOV</div><div class="name">Culinary Storytelling</div></div>
+      <div class="method" data-reveal style="--reveal-delay:0.55s;"><div class="m">DEC</div><div class="name">Craft Traditions</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOUNDER ===== -->
+<section class="founder" data-screen-label="06 Founder">
+  <div class="wrap">
+    <div class="founder-grid">
+      <div class="founder-portrait paint pcool" data-reveal>
+        <div class="deco"></div>
+        <span class="tag">Founder portrait — placeholder</span>
+        <span class="label">Alejandra · founder & proposed executive director</span>
+      </div>
+      <div class="founder-text" data-reveal style="--reveal-delay: 0.1s;">
+        <div class="eyebrow">Founder note</div>
+        <h2 style="margin-top:18px;">A Wilmington native,<br/>building the room she wished she'd had.</h2>
+        <p style="margin-top: 22px;">
+          Alejandra is a 32-year-old Wilmington native with deep family,
+          service-industry, and cultural roots in the city. Her network
+          spans hospitality, local arts, and small business — built-in
+          audience reach, partnership pathways, and grassroots credibility
+          from day one.
+        </p>
+        <p>
+          Luna isn't <em>her</em> place. A nonprofit has no private owner. It's
+          governed by an independent board and exists for public benefit.
+          Alejandra's role is founder and proposed executive director —
+          a Wilmington daughter holding the door open behind her.
+        </p>
+        <div class="signature">— Alejandra</div>
+        <div class="role">Founder & Proposed Executive Director</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EVENTS STRIP ===== -->
+<section class="events-strip" data-screen-label="07 Events">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">Coming up at Luna</div>
+        <h2>Luna Nights<br/>& other gatherings.</h2>
+      </div>
+      <div class="desc">
+        Year one is a visibility year. Events earn the moments that fuel
+        social media, attract donors, and turn neighbors into participants.
+      </div>
+    </div>
+
+    <div class="events-grid">
+      <article class="event-card" data-reveal>
+        <div class="paint p2">
+          <span class="tag">Luna Night</span>
+          <span class="glyph" style="font-size:6rem; opacity:0.4;">◐</span>
+        </div>
+        <div class="event-body">
+          <div class="event-date"><strong>FRI</strong> · May 22 · 7pm</div>
+          <h3>Luna Launch Night</h3>
+          <p class="event-meta">Whale Building · Open to the public · Donation-based</p>
+          <a href="events.html" class="btn-link">RSVP & details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="event-card" data-reveal style="--reveal-delay: 0.1s;">
+        <div class="paint pwarm">
+          <span class="tag">Fundraiser</span>
+          <span class="glyph" style="font-size:6rem; opacity:0.4;">✦</span>
+        </div>
+        <div class="event-body">
+          <div class="event-date"><strong>SAT</strong> · Jun 13 · 6pm</div>
+          <h3>Paint the Moon — Annual Fundraiser</h3>
+          <p class="event-meta">Whale Building · Tickets sliding scale · 21+</p>
+          <a href="events.html" class="btn-link">RSVP & details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="event-card" data-reveal style="--reveal-delay: 0.2s;">
+        <div class="paint p3">
+          <span class="tag">Corridor</span>
+          <span class="glyph" style="font-size:6rem; opacity:0.4;">♫</span>
+        </div>
+        <div class="event-body">
+          <div class="event-date"><strong>FRI</strong> · Jun 26 · 7pm</div>
+          <h3>Tacos, Tunes &amp; Art — Donor Night</h3>
+          <p class="event-meta">Whale Building × Over the Border Tacos</p>
+          <a href="events.html" class="btn-link">RSVP & details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <div style="margin-top: 48px; text-align: center;">
+      <a href="events.html" class="btn btn-ghost">See the full calendar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section class="location" data-screen-label="08 Location">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div class="map-card" data-reveal>
+        <div class="roads"></div>
+        <div class="pin">
+          <div class="drop"></div>
+          <div class="lbl">The Whale Building</div>
+        </div>
+        <div class="corridor">a cultural corridor<br/>food · family · creative practice</div>
+      </div>
+
+      <div class="loc-text" data-reveal style="--reveal-delay: 0.1s;">
+        <div class="eyebrow">Our proposed home</div>
+        <h2>The Whale Building,<br/>next to Over the Border Tacos.</h2>
+        <p style="margin-top: 22px;">
+          A natural cultural corridor between food, family, gathering, and
+          creative practice — a place already understood by residents as
+          somewhere to <em>spend time</em>.
+        </p>
+        <p>
+          Built-in foot traffic from day one. A hospitality anchor that
+          already understands the rhythm of nights, weekends, and family
+          hours. The mission doesn't depend on the building. The building
+          accelerates it.
+        </p>
+        <div class="loc-tags">
+          <span class="tag-pill">Flexible studio</span>
+          <span class="tag-pill">ADA accessible</span>
+          <span class="tag-pill">Wall hanging space</span>
+          <span class="tag-pill">Lockable storage</span>
+          <span class="tag-pill">Acoustic stage</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOUNDING CIRCLE TEASER ===== -->
+<section class="founding" data-screen-label="09 Founding Circle">
+  <div class="wrap">
+    <div class="section-head" data-reveal style="text-align:center; grid-template-columns: 1fr;">
+      <div>
+        <div class="eyebrow center" style="justify-content:center;">The Founding Circle</div>
+        <h2 style="margin-top: 18px; text-align: center;">Five ways to underwrite the founding year.</h2>
+        <div class="desc" style="margin: 18px auto 0; text-align:center; max-width: 60ch;">
+          A launch donor circle for Alejandra's network and beyond.
+          Recurring giving turns one-time generosity into a predictable
+          monthly base. The annual tiers seed the founding.
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-row" data-reveal>
+      <div class="tier-card">
+        <div class="tier-glyph">·</div>
+        <div class="tier-name">Moonbeam</div>
+        <div class="tier-price">$25</div>
+        <div class="tier-cadence">Monthly</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-glyph">◔</div>
+        <div class="tier-name">Crescent</div>
+        <div class="tier-price">$50</div>
+        <div class="tier-cadence">Monthly</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-glyph">●</div>
+        <div class="tier-name">Full Moon</div>
+        <div class="tier-price">$100</div>
+        <div class="tier-cadence">Monthly</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-glyph">✦</div>
+        <div class="tier-name">Luminary</div>
+        <div class="tier-price">$1,000</div>
+        <div class="tier-cadence">Annual</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-glyph">✧</div>
+        <div class="tier-name">Founding Luminary</div>
+        <div class="tier-price">$5,000+</div>
+        <div class="tier-cadence">Annual</div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 48px;">
+      <a href="donate.html" class="btn btn-primary">Choose your circle</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter" data-screen-label="10 Newsletter">
+  <div class="wrap">
+    <div class="newsletter-grid">
+      <div data-reveal>
+        <div class="eyebrow" style="color: var(--moon);">Stay in the loop</div>
+        <h2 style="margin-top: 18px;">Hear when Luna opens its doors.</h2>
+        <p class="desc">
+          Monthly notes from Wilmington — class dates, artist features, and
+          the occasional Luna Night invite. No noise.
+        </p>
+      </div>
+      <div data-reveal style="--reveal-delay: 0.1s;">
+        <form data-mock-submit aria-label="Newsletter signup">
+          <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address" />
+          <button type="submit" class="btn btn-gold">Subscribe</button>
+        </form>
+        <div class="success-state" style="display:none; text-align:left; padding: 20px 0;">
+          <div class="moon" style="font-size: 2.4rem;">◑</div>
+          <h3 style="color: var(--bone); margin-top: 8px;">You're on the list.</h3>
+          <p class="fine" style="margin-top: 6px;">We'll send the first note when programming dates are confirmed.</p>
+        </div>
+        <p class="fine">By subscribing, you agree to receive occasional emails from Luna Arts Academy. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-lockup">
+        <img src="assets/logo.png" alt="Luna Art Academy" />
+        <div class="name">Luna Art Academy</div>
+        <div class="tagline">Where Wilmington creates together.</div>
+        <p>A donation-supported, multicultural arts learning academy on the Wilmington riverfront.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="artists.html">Artists</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Give</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="donate.html#circle">Founding Circle</a></li>
+          <li><a href="get-involved.html#sponsor">Sponsor a class</a></li>
+          <li><a href="get-involved.html#inkind">In-kind giving</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Participate</h4>
+        <ul>
+          <li><a href="get-involved.html#volunteer">Volunteer</a></li>
+          <li><a href="get-involved.html#instructor">Teach a class</a></li>
+          <li><a href="get-involved.html#board">Board interest</a></li>
+          <li><a href="get-involved.html#partner">Community partners</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-disclaim">
+      Luna Wilmington Arts Academy, Inc. is a Delaware nonprofit corporation
+      seeking 501(c)(3) tax-exempt status. Donations support free and
+      donation-based arts learning, supplies, local artist instructors,
+      community programming, and operating costs. Donors may request
+      information about how contributions are allocated.
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Luna Wilmington Arts Academy, Inc. · Wilmington, Delaware</div>
+      <div>Made with care on the river.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

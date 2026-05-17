@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Artists · Luna Art Academy</title>
+<meta name="description" content="The local Wilmington artists, musicians, and culture-keepers who teach, perform, and shape Luna Art Academy." />
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<link rel="stylesheet" href="assets/site.css" />
+<style>
+  /* Featured artist row */
+  .featured-artist {
+    padding: 40px 0 100px;
+  }
+  .fa-card {
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    box-shadow: var(--shadow-lift);
+  }
+  @media (max-width: 900px) { .fa-card { grid-template-columns: 1fr; } }
+  .fa-art {
+    aspect-ratio: 4/5;
+    min-height: 480px;
+    position: relative;
+  }
+  @media (max-width: 900px) { .fa-art { aspect-ratio: 5/4; min-height: 320px; } }
+  .fa-body { padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; }
+  .fa-body .eyebrow { color: var(--rose); }
+  .fa-body .name {
+    font-family: var(--font-display);
+    font-size: var(--step-4);
+    margin: 14px 0 6px;
+    line-height: 1.05;
+  }
+  .fa-body .role {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--plum);
+    font-size: 1.2rem;
+    margin-bottom: 22px;
+  }
+  .fa-body p { color: var(--ink-soft); line-height: 1.65; margin-bottom: 14px; }
+  .fa-tags {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin: 26px 0 30px;
+    padding: 20px 0;
+    border-top: 1px solid var(--ink-line);
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .fa-tags span {
+    padding: 5px 12px;
+    background: var(--cream);
+    color: var(--plum);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    border-radius: 999px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .fa-pull {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.45;
+    color: var(--ink);
+    padding-left: 18px;
+    border-left: 3px solid var(--gold);
+  }
+
+  /* Discipline filter */
+  .disc-filter {
+    padding: 24px 0;
+    background: var(--cream);
+    border-top: 1px solid var(--ink-line);
+    border-bottom: 1px solid var(--ink-line);
+    position: sticky; top: 78px; z-index: 20;
+  }
+  .disc-filter .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+  }
+  .disc-filter .tabs {
+    display: flex; gap: 4px; flex-wrap: wrap;
+  }
+  .disc-filter .tabs button {
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+  }
+  .disc-filter .tabs button:hover { color: var(--plum); border-color: var(--ink-line); }
+  .disc-filter .tabs button.active {
+    background: var(--ink);
+    color: var(--bone);
+    border-color: var(--ink);
+  }
+  .disc-filter .count {
+    font-size: 0.82rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Artist roster grid */
+  .roster {
+    padding: 80px 0 100px;
+  }
+  .roster-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 1100px) { .roster-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 800px) { .roster-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .roster-grid { grid-template-columns: 1fr; } }
+
+  .artist-card {
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .artist-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--gold);
+  }
+  .artist-card .paint {
+    aspect-ratio: 1;
+    border-radius: 0;
+  }
+  .artist-card-body { padding: 20px 22px 24px; }
+  .artist-card .disc-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--moon);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    border-radius: 999px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .artist-card .disc-tag.music { background: var(--teal); color: var(--bone); }
+  .artist-card .disc-tag.painting { background: var(--rose); color: var(--bone); }
+  .artist-card .disc-tag.photo { background: var(--gold); color: var(--ink); }
+  .artist-card .disc-tag.spoken { background: var(--plum); color: var(--bone); }
+  .artist-card .disc-tag.dance { background: var(--orange); color: var(--ink); }
+  .artist-card .disc-tag.craft { background: var(--terracotta); color: var(--bone); }
+  .artist-card .disc-tag.printmaking { background: var(--gold-deep); color: var(--bone); }
+  .artist-card .disc-tag.digital { background: var(--teal-deep); color: var(--bone); }
+  .artist-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.05;
+    margin-bottom: 4px;
+  }
+  .artist-card .role {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-mute);
+    font-size: 0.92rem;
+    margin-bottom: 12px;
+  }
+  .artist-card .bio {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .artist-card .links {
+    display: flex; gap: 10px;
+    font-size: 0.78rem;
+    color: var(--plum);
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .artist-card .links a {
+    text-decoration: none;
+    color: var(--plum);
+    border-bottom: 1px solid currentColor;
+    transition: color 0.2s;
+  }
+  .artist-card .links a:hover { color: var(--rose); }
+
+  /* Apply CTA strip */
+  .apply-strip {
+    padding: 100px 0;
+    background: var(--ink);
+    color: var(--bone);
+    position: relative;
+    overflow: hidden;
+  }
+  .apply-strip::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(at 20% 50%, rgba(245,197,24,0.18), transparent 50%),
+      radial-gradient(at 80% 50%, rgba(214,51,108,0.12), transparent 50%);
+    pointer-events: none;
+  }
+  .apply-strip .grid {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center;
+    position: relative;
+  }
+  @media (max-width: 880px) { .apply-strip .grid { grid-template-columns: 1fr; } }
+  .apply-strip h2 { color: var(--bone); font-size: var(--step-4); }
+  .apply-strip .eyebrow { color: var(--moon); }
+  .apply-strip p { color: rgba(251,246,236,0.85); margin-top: 16px; line-height: 1.55; }
+  .apply-strip .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .apply-strip .stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  .apply-strip .stat-card {
+    background: rgba(251,246,236,0.06);
+    border: 1px solid rgba(251,246,236,0.15);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+  }
+  .apply-strip .stat-card .num {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    color: var(--moon);
+    line-height: 1;
+  }
+  .apply-strip .stat-card .lbl {
+    margin-top: 6px;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(251,246,236,0.7);
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="pulse">Founding year 2026 · Wilmington, Delaware</div>
+    <div class="right">
+      <span class="hideS">A donation-supported arts academy.</span>
+      <a href="donate.html">Join the Founding Circle →</a>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.png" alt="Luna Art Academy" />
+      <div class="lockup">Luna<small>Art Academy</small></div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="artists.html" class="active">Artists</a></li>
+      <li><a href="get-involved.html">Get Involved</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="donate.html" class="btn btn-gold btn-sm">Donate</a>
+      <button class="nav-burger" aria-label="Open menu" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer">
+  <button class="close" aria-label="Close menu" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+  </button>
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="artists.html">Artists</a><a href="get-involved.html">Get Involved</a><a href="contact.html">Contact</a><a href="donate.html">Donate</a>
+</div>
+
+<section class="page-head" data-screen-label="01 Artists head">
+  <div class="wrap-narrow">
+    <div class="eyebrow center" style="justify-content:center;">The Roster</div>
+    <h1>Wilmington's artists,<br/>paid to teach.</h1>
+    <p class="lede">Every class is taught by a local maker. Every teacher is paid a real stipend. These are the artists shaping Luna's founding year — and there's room on the wall for more.</p>
+  </div>
+</section>
+
+<!-- ===== FEATURED ARTIST ===== -->
+<section class="featured-artist" data-screen-label="02 Featured artist">
+  <div class="wrap">
+    <div class="fa-card" data-reveal>
+      <div class="fa-art paint p3">
+        <span class="tag">Artist of the month · Placeholder</span>
+        <span class="glyph" style="font-size: 14rem; opacity: 0.4;">✦</span>
+        <span class="label">Featured artist — placeholder portrait</span>
+      </div>
+      <div class="fa-body">
+        <div class="eyebrow">Artist of the month</div>
+        <div class="name">Maya Reyes</div>
+        <div class="role">Painter · Muralist · Lead Painting Instructor</div>
+        <p>Maya teaches the foundational acrylic series and leads "Paint Your Story," Luna's signature cultural-identity workshop. Her work pulls from her Wilmington upbringing, Caribbean family stories, and the city's working waterfront.</p>
+        <p>She's a Wilmington native, returned home from MICA with a BFA and three years of muralist work along the East Coast. Her largest piece — on 4th &amp; Walnut — went up in 2024.</p>
+        <div class="fa-tags">
+          <span>Acrylic</span>
+          <span>Mural</span>
+          <span>Cultural Identity</span>
+          <span>Bilingual</span>
+        </div>
+        <div class="fa-pull">"I want a kid from my block to know they don't have to leave Wilmington to make real work. That's the whole project, right there."</div>
+        <div style="margin-top: 30px; display:flex; gap: 12px; flex-wrap: wrap;">
+          <a href="programs.html#painting" class="btn btn-primary">See Maya's classes</a>
+          <a href="events.html" class="btn-link">Catch her at Luna Night →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FILTERS ===== -->
+<div class="disc-filter" data-tabs data-tabs-target="#roster">
+  <div class="wrap">
+    <div class="tabs">
+      <button data-tab="all" class="active">All artists</button>
+      <button data-tab="painting">Painting</button>
+      <button data-tab="music">Music</button>
+      <button data-tab="photo">Photography</button>
+      <button data-tab="spoken">Spoken Word</button>
+      <button data-tab="dance">Dance</button>
+      <button data-tab="craft">Craft &amp; Fashion</button>
+      <button data-tab="printmaking">Printmaking</button>
+      <button data-tab="digital">Digital</button>
+    </div>
+    <div class="count">12 founding instructors · More joining</div>
+  </div>
+</div>
+
+<!-- ===== ROSTER ===== -->
+<section class="roster" data-screen-label="03 Roster">
+  <div class="wrap">
+    <div class="roster-grid" id="roster">
+
+      <article class="artist-card" data-cat="painting" data-reveal>
+        <div class="paint p3"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag painting">Painting</span>
+          <h3>Maya Reyes</h3>
+          <div class="role">Muralist, painter</div>
+          <p class="bio">Wilmington native. Acrylic, large-format mural, and the lead instructor for "Paint Your Story."</p>
+          <div class="links"><a href="#">Instagram</a><a href="#">Site</a></div>
+        </div>
+      </article>
+
+      <article class="artist-card" data-cat="music" data-reveal style="--reveal-delay:0.05s;">
+        <div class="paint p2"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag music">Music</span>
+          <h3>Marcus Okafor</h3>
+          <div class="role">Multi-instrumentalist</div>
+          <p class="bio">Leads First-Instrument Night and the Wednesday open jam. Plays bass, drums, and a little of everything.</p>
+          <div class="links"><a href="#">Instagram</a><a href="#">SoundCloud</a></div>
+        </div>
+      </article>
+
+      <article class="artist-card" data-cat="spoken" data-reveal style="--reveal-delay:0.10s;">
+        <div class="paint p4"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag spoken">Spoken Word</span>
+          <h3>Diana Park</h3>
+          <div class="role">Poet, educator</div>
+          <p class="bio">Hosts Luna's monthly open mic and teaches the March spoken-word residency. Two-time Delaware Slam finalist.</p>
+          <div class="links"><a href="#">Instagram</a></div>
+        </div>
+      </article>
+
+      <article class="artist-card" data-cat="photo" data-reveal style="--reveal-delay:0.15s;">
+        <div class="paint pwarm"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag photo">Photo</span>
+          <h3>Jamal Whitfield</h3>
+          <div class="role">Photographer</div>
+          <p class="bio">Documenting Wilmington's working waterfront for a decade. Leads phone-photography workshops in January's rotation.</p>
+          <div class="links"><a href="#">Site</a><a href="#">Instagram</a></div>
+        </div>
+      </article>
+
+      <article class="artist-card" data-cat="music" data-reveal>
+        <div class="paint pcool"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag music">Music</span>
+          <h3>Sofia Velez</h3>
+          <div class="role">Singer-songwriter</div>
+          <p class="bio">Runs the Sunday songwriter circle. Performs in Spanish and English; tours the mid-Atlantic café circuit.</p>
+          <div class="links"><a href="#">Instagram</a></div>
+        </div>
+      </article>
+
+      <article class="artist-card" data-cat="dance" data-reveal style="--reveal-delay:0.05s;">
+        <div class="paint pwarm"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag dance">Dance</span>
+          <h3>Carlos Mendes</h3>
+          <div class="role">Salsa &amp; bachata instructor</div>
+          <p class="bio">Leads May's rotating dance residency. Twenty years on Wilmington's social-dance floors.</p>
+          <div class="links"><a href="#">Instagram</a></div>
+        </div>
+      </article>
+
+      <article class="artist-card" data-cat="painting" data-reveal style="--reveal-delay:0.10s;">
+        <div class="paint p2"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag painting">Painting</span>
+          <h3>Eli Bergstrom</h3>
+          <div class="role">Watercolorist</div>
+          <p class="bio">Teaches the Tuesday community paint nights. Watercolor sketchbook practice and en-plein-air weekends.</p>
+          <div class="links"><a href="#">Instagram</a></div>
+        </div>
+      </article>
+
+      <article class="artist-card" data-cat="craft" data-reveal style="--reveal-delay:0.15s;">
+        <div class="paint p3"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag craft">Craft &amp; Fashion</span>
+          <h3>Naomi Patel</h3>
+          <div class="role">Textile artist, designer</div>
+          <p class="bio">Patchwork, screen-printing, and the August Fashion residency. Repair as craft, craft as practice.</p>
+          <div class="links"><a href="#">Site</a></div>
+        </div>
+      </article>
+
+      <article class="artist-card" data-cat="printmaking" data-reveal>
+        <div class="paint p4"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag printmaking">Printmaking</span>
+          <h3>Devon Hayes</h3>
+          <div class="role">Printmaker</div>
+          <p class="bio">Linocut and gelli-plate work. Owns a small Wilmington press; teaches April's rotating residency.</p>
+          <div class="links"><a href="#">Etsy</a><a href="#">Instagram</a></div>
+        </div>
+      </article>
+
+      <article class="artist-card" data-cat="digital" data-reveal style="--reveal-delay:0.05s;">
+        <div class="paint pcool"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag digital">Digital</span>
+          <h3>Ana Torres</h3>
+          <div class="role">Illustrator, animator</div>
+          <p class="bio">Procreate, Blender basics, and an October digital-art rotation. Self-taught, ferociously generous.</p>
+          <div class="links"><a href="#">Site</a></div>
+        </div>
+      </article>
+
+      <article class="artist-card" data-cat="music" data-reveal style="--reveal-delay:0.10s;">
+        <div class="paint pwarm"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag music">Music</span>
+          <h3>Tyrell James</h3>
+          <div class="role">Producer, beatmaker</div>
+          <p class="bio">Runs Thursday's Beat-Making 101. Released two EPs on Bandcamp; co-runs a North Wilmington studio.</p>
+          <div class="links"><a href="#">Bandcamp</a></div>
+        </div>
+      </article>
+
+      <article class="artist-card" data-cat="painting" data-reveal style="--reveal-delay:0.15s;">
+        <div class="paint p3"><span class="tag">Placeholder</span></div>
+        <div class="artist-card-body">
+          <span class="disc-tag painting">Painting</span>
+          <h3>Beatriz Santos</h3>
+          <div class="role">Painter, teaching artist</div>
+          <p class="bio">Leads Saturday Family Art Day. Twenty years teaching in Wilmington public schools.</p>
+          <div class="links"><a href="#">Instagram</a></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPLY STRIP ===== -->
+<section class="apply-strip" data-screen-label="04 Apply">
+  <div class="wrap">
+    <div class="grid">
+      <div data-reveal>
+        <div class="eyebrow">Pitch a class</div>
+        <h2 style="margin-top: 18px;">If you teach,<br/>we want to hear from you.</h2>
+        <p>Wilmington artists, musicians, and culture-keepers — the door is open. Propose a workshop, a four-week series, or a rotating-method residency. Paid stipend, full instructional support, and a room that wants your work.</p>
+        <div class="actions" style="margin-top: 30px;">
+          <a href="get-involved.html#instructor" class="btn btn-gold">Apply to teach</a>
+          <a href="programs.html" class="btn-link" style="color: var(--moon); border-color: var(--moon);">See open disciplines →</a>
+        </div>
+      </div>
+      <div class="stats" data-reveal style="--reveal-delay:0.1s;">
+        <div class="stat-card">
+          <div class="num">25+</div>
+          <div class="lbl">Year-one instructors</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">12</div>
+          <div class="lbl">Rotating residencies</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">$75 — $200</div>
+          <div class="lbl">Stipend per session</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">36+</div>
+          <div class="lbl">Teaching slots</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-lockup">
+        <img src="assets/logo.png" alt="Luna Art Academy" />
+        <div class="name">Luna Art Academy</div>
+        <div class="tagline">Where Wilmington creates together.</div>
+        <p>A donation-supported, multicultural arts learning academy on the Wilmington riverfront.</p>
+      </div>
+      <div><h4>Visit</h4><ul><li><a href="about.html">About</a></li><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="artists.html">Artists</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Give</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="donate.html#circle">Founding Circle</a></li><li><a href="get-involved.html#sponsor">Sponsor a class</a></li><li><a href="get-involved.html#inkind">In-kind giving</a></li></ul></div>
+      <div><h4>Participate</h4><ul><li><a href="get-involved.html#volunteer">Volunteer</a></li><li><a href="get-involved.html#instructor">Teach a class</a></li><li><a href="get-involved.html#board">Board interest</a></li><li><a href="get-involved.html#partner">Community partners</a></li></ul></div>
+    </div>
+    <div class="footer-disclaim">Luna Wilmington Arts Academy, Inc. is a Delaware nonprofit corporation seeking 501(c)(3) tax-exempt status. Donations support free and donation-based arts learning, supplies, local artist instructors, community programming, and operating costs. Donors may request information about how contributions are allocated.</div>
+    <div class="footer-bottom">
+      <div>© 2026 Luna Wilmington Arts Academy, Inc. · Wilmington, Delaware</div>
+      <div>Made with care on the river.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

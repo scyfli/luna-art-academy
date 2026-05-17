@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Donate · Luna Art Academy</title>
+<meta name="description" content="Join the Founding Circle of Luna Wilmington Arts Academy. Recurring and one-time gifts fund classes, paid local artists, and free access for Wilmington." />
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<link rel="stylesheet" href="assets/site.css" />
+<style>
+  /* Hero impact */
+  .impact {
+    padding: 40px 0 80px;
+  }
+  .impact-card {
+    background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 100%);
+    color: var(--bone);
+    border-radius: var(--radius-xl);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .impact-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(at 25% 30%, rgba(245,197,24,0.20), transparent 50%),
+      radial-gradient(at 75% 70%, rgba(214,51,108,0.15), transparent 50%);
+    pointer-events: none;
+  }
+  .impact-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; position: relative;
+    align-items: center;
+  }
+  @media (max-width: 900px) { .impact-grid { grid-template-columns: 1fr; } }
+  .impact-card h2 { color: var(--bone); font-size: var(--step-4); }
+  .impact-card .eyebrow { color: var(--moon); }
+  .impact-card p { color: rgba(251,246,236,0.88); line-height: 1.55; margin-top: 14px; }
+  .impact-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  .impact-stat {
+    background: rgba(251,246,236,0.08);
+    border: 1px solid rgba(251,246,236,0.15);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    text-align: center;
+  }
+  .impact-stat .amount {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--moon);
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+  .impact-stat .label {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(251,246,236,0.7);
+  }
+
+  /* Donate flow */
+  .flow {
+    padding: 60px 0 100px;
+  }
+  .flow-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 1000px) { .flow-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+  /* Steps */
+  .steps-indicator {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 32px;
+  }
+  .step-bub {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--ink-mute);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .step-bub .n {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1px solid var(--ink-line);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    color: var(--ink-mute);
+    transition: all 0.3s ease;
+  }
+  .step-bub.active { color: var(--plum); }
+  .step-bub.active .n { background: var(--plum); color: var(--bone); border-color: var(--plum); }
+  .step-bub.done .n { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+  .step-bub .ln { width: 40px; height: 1px; background: var(--ink-line); }
+
+  /* Cadence toggle */
+  .cadence-toggle {
+    display: inline-flex;
+    background: var(--cream);
+    border-radius: 999px;
+    padding: 4px;
+    border: 1px solid var(--ink-line);
+    margin-bottom: 30px;
+  }
+  .cadence-toggle button {
+    border: none;
+    background: transparent;
+    padding: 10px 24px;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .cadence-toggle button.active {
+    background: var(--ink);
+    color: var(--bone);
+    box-shadow: var(--shadow-soft);
+  }
+  .cadence-toggle button .save {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background: var(--moon);
+    color: var(--ink);
+    font-size: 0.65rem;
+    border-radius: 999px;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+  }
+
+  /* Tier cards row */
+  .tier-row-large {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 900px) { .tier-row-large { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .tier-row-large { grid-template-columns: 1fr 1fr; } }
+
+  .tier-pick {
+    background: var(--shell);
+    border: 2px solid var(--ink-line);
+    border-radius: var(--radius-lg);
+    padding: 22px 16px 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .tier-pick:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+  .tier-pick.selected {
+    border-color: var(--plum);
+    background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 100%);
+    color: var(--bone);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lift);
+  }
+  .tier-pick .glyph {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--gold-deep);
+    margin-bottom: 8px;
+  }
+  .tier-pick.selected .glyph { color: var(--moon); }
+  .tier-pick .name {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .tier-pick.selected .name { color: var(--bone); }
+  .tier-pick .amt {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--plum);
+    line-height: 1;
+  }
+  .tier-pick.selected .amt { color: var(--moon); }
+  .tier-pick .cad {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 6px;
+  }
+  .tier-pick.selected .cad { color: rgba(251,246,236,0.78); }
+
+  /* Custom amount */
+  .custom-amount {
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+  }
+  .custom-amount .label {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--plum);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .preset-row {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px;
+  }
+  .preset-row button {
+    border: 1px solid var(--ink-line);
+    background: var(--bone);
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    color: var(--ink);
+    transition: all 0.2s ease;
+  }
+  .preset-row button:hover { border-color: var(--gold); }
+  .preset-row button.active {
+    background: var(--ink);
+    color: var(--bone);
+    border-color: var(--ink);
+  }
+  .amount-input {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bone);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius);
+    padding: 0 18px;
+  }
+  .amount-input:focus-within { border-color: var(--plum); box-shadow: 0 0 0 4px rgba(107,45,140,0.12); }
+  .amount-input .dollar {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--ink-mute);
+  }
+  .amount-input input {
+    border: none;
+    padding: 18px 0;
+    background: transparent;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--ink);
+    width: 100%;
+    outline: none;
+  }
+
+  /* Step actions */
+  .step-actions {
+    display: flex; gap: 12px; align-items: center; justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ink-line);
+  }
+  .step-actions.right { justify-content: flex-end; }
+
+  /* Summary sidebar */
+  .summary-card {
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-xl);
+    padding: 32px 28px;
+    position: sticky;
+    top: 100px;
+    box-shadow: var(--shadow-soft);
+  }
+  .summary-card .eyebrow { color: var(--rose); margin-bottom: 16px; }
+  .summary-card .big-num {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    color: var(--plum);
+    line-height: 1;
+    margin: 8px 0;
+  }
+  .summary-card .cadence-line {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+  .summary-card .tier-line {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 0;
+    border-top: 1px solid var(--ink-line);
+    font-size: 0.92rem;
+  }
+  .summary-card .tier-line .key {
+    color: var(--ink-mute);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .summary-card .tier-line .val {
+    font-weight: 600;
+    color: var(--ink);
+    text-transform: capitalize;
+  }
+  .summary-card .impact-list {
+    margin-top: 18px;
+    padding: 18px;
+    background: var(--cream);
+    border-radius: var(--radius);
+  }
+  .summary-card .impact-list .head {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    color: var(--gold-deep);
+    margin-bottom: 10px;
+  }
+  .summary-card .impact-list ul {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .summary-card .impact-list li {
+    padding-left: 20px;
+    position: relative;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .summary-card .impact-list li::before {
+    content: "◐";
+    position: absolute; left: 0; top: 0;
+    color: var(--gold);
+    font-size: 0.7rem;
+  }
+
+  /* Payment form */
+  .pay-section {
+    margin-top: 14px;
+  }
+  .pay-section h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+  }
+  .pay-section .sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .pay-grid {
+    display: grid; gap: 16px;
+  }
+  .pay-grid .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .pay-grid .row-2 { grid-template-columns: 1fr; } }
+  .pay-method-toggle {
+    display: flex; gap: 8px;
+    margin-bottom: 24px;
+  }
+  .pay-method-toggle button {
+    flex: 1;
+    border: 1px solid var(--ink-line);
+    background: var(--bone);
+    padding: 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font: inherit;
+    color: var(--ink);
+    transition: all 0.2s ease;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .pay-method-toggle button.active {
+    border-color: var(--plum);
+    background: var(--cream);
+    box-shadow: 0 0 0 2px var(--plum);
+  }
+  .pay-method-toggle button .glyph { font-size: 1.4rem; }
+
+  .card-mock {
+    background: linear-gradient(135deg, var(--ink) 0%, var(--plum-deep) 100%);
+    color: var(--bone);
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-mock::before {
+    content: "";
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--moon), transparent 70%);
+    opacity: 0.3;
+  }
+  .card-mock .brand {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    color: var(--moon);
+    margin-bottom: 28px;
+  }
+  .card-mock .num {
+    font-family: var(--font-mono), monospace;
+    font-size: 1.3rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 18px;
+  }
+  .card-mock .row {
+    display: flex; justify-content: space-between;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  /* Success step */
+  .donate-success {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .donate-success .moon-big {
+    font-family: var(--font-display);
+    font-size: 6rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 24px;
+    display: inline-block;
+    animation: float 4s ease-in-out infinite;
+  }
+  .donate-success h2 {
+    font-size: var(--step-4);
+    margin-bottom: 14px;
+  }
+  .donate-success p {
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 48ch;
+    margin: 0 auto 20px;
+  }
+  .donate-success .receipt {
+    margin: 30px auto 0;
+    max-width: 380px;
+    padding: 24px;
+    background: var(--cream);
+    border-radius: var(--radius);
+    text-align: left;
+  }
+  .donate-success .receipt .line {
+    display: flex; justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--ink-line);
+    font-size: 0.92rem;
+  }
+  .donate-success .receipt .line:last-child {
+    border-bottom: none;
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 2px solid var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+  }
+
+  /* Funding mix */
+  .funding-mix {
+    padding: 120px 0;
+    background: var(--cream);
+  }
+  .mix-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;
+    margin-top: 50px;
+  }
+  @media (max-width: 900px) { .mix-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 500px) { .mix-grid { grid-template-columns: 1fr 1fr; } }
+  .mix-card {
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-lg);
+    padding: 24px 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .mix-card:hover { transform: translateY(-4px); }
+  .mix-card .pct {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--plum);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .mix-card h4 {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+  .mix-card p {
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    line-height: 1.4;
+  }
+
+  /* FAQ */
+  .faq {
+    padding: 120px 0;
+  }
+  .faq-list {
+    max-width: 800px;
+    margin: 50px auto 0;
+  }
+  details.faq-item {
+    border-bottom: 1px solid var(--ink-line);
+    padding: 24px 0;
+  }
+  details.faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--ink);
+    gap: 16px;
+  }
+  details.faq-item summary::-webkit-details-marker { display: none; }
+  details.faq-item summary::after {
+    content: "+";
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--gold-deep);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+  details.faq-item[open] summary::after { transform: rotate(45deg); }
+  details.faq-item .body {
+    margin-top: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    font-size: 0.95rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="pulse">Founding year 2026 · Wilmington, Delaware</div>
+    <div class="right">
+      <span class="hideS">A donation-supported arts academy.</span>
+      <a href="donate.html">Join the Founding Circle →</a>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.png" alt="Luna Art Academy" />
+      <div class="lockup">Luna<small>Art Academy</small></div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="artists.html">Artists</a></li>
+      <li><a href="get-involved.html">Get Involved</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="donate.html" class="btn btn-gold btn-sm">Donate</a>
+      <button class="nav-burger" aria-label="Open menu" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer">
+  <button class="close" aria-label="Close menu" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+  </button>
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="artists.html">Artists</a><a href="get-involved.html">Get Involved</a><a href="contact.html">Contact</a><a href="donate.html">Donate</a>
+</div>
+
+<section class="page-head" id="circle" data-screen-label="01 Donate head">
+  <div class="wrap-narrow">
+    <div class="eyebrow center" style="justify-content:center;">The Founding Circle</div>
+    <h1>Underwrite the founding year.</h1>
+    <p class="lede">Cost can never be the barrier for Luna's participants. That means donor-supported, from year one forward. Pick a Circle. Choose any amount. Skip the tiers and give what feels right.</p>
+  </div>
+</section>
+
+<!-- ===== IMPACT CARD ===== -->
+<section class="impact" data-screen-label="02 Impact">
+  <div class="wrap">
+    <div class="impact-card" data-reveal>
+      <div class="impact-grid">
+        <div>
+          <div class="eyebrow">Where the money goes</div>
+          <h2 style="margin-top: 18px;">Your gift, in plain numbers.</h2>
+          <p>The first-year budget is approximately <strong style="color: var(--moon);">$150,000</strong>, drawn from a layered mix so no single source exceeds ~30% of the total. Recurring donations are the most powerful gift you can make: they let us plan, hire, and stay open.</p>
+          <p>Every dollar of cash giving and every hour of in-kind support is tracked for our quarterly board report and grant applications.</p>
+        </div>
+        <div class="impact-stats">
+          <div class="impact-stat">
+            <div class="amount">$25/mo</div>
+            <div class="label">funds a youth seat all year</div>
+          </div>
+          <div class="impact-stat">
+            <div class="amount">$50/mo</div>
+            <div class="label">supplies a paint class</div>
+          </div>
+          <div class="impact-stat">
+            <div class="amount">$100/mo</div>
+            <div class="label">pays an artist's monthly stipend</div>
+          </div>
+          <div class="impact-stat">
+            <div class="amount">$1,000</div>
+            <div class="label">underwrites a Luna Night</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DONATE FLOW ===== -->
+<section class="flow" data-screen-label="03 Flow" data-donate-flow>
+  <div class="wrap">
+    <div class="flow-grid">
+
+      <!-- LEFT: Multi-step -->
+      <div>
+        <!-- Steps indicator -->
+        <div class="steps-indicator">
+          <div class="step-bub active" id="b1"><span class="n">1</span><span>Your gift</span></div>
+          <div class="ln"></div>
+          <div class="step-bub" id="b2"><span class="n">2</span><span>Your details</span></div>
+          <div class="ln"></div>
+          <div class="step-bub" id="b3"><span class="n">3</span><span>Confirmation</span></div>
+        </div>
+
+        <!-- STEP 1: Choose -->
+        <div data-step="1">
+          <h2 style="font-size: var(--step-3); margin-bottom: 8px;">Choose your circle.</h2>
+          <p style="color: var(--ink-soft); margin-bottom: 26px;">Recurring giving is the strongest support — it lets Luna plan. But every gift counts.</p>
+
+          <div class="cadence-toggle" role="tablist">
+            <button type="button" data-cadence="monthly" class="active">Monthly <span class="save">Strongest support</span></button>
+            <button type="button" data-cadence="annual">Annual</button>
+            <button type="button" data-cadence="one-time">One-time</button>
+          </div>
+
+          <div class="tier-row-large">
+            <div class="tier-pick" data-tier="moonbeam">
+              <div class="glyph">·</div>
+              <div class="name">Moonbeam</div>
+              <div class="amt">$25</div>
+              <div class="cad">Monthly</div>
+            </div>
+            <div class="tier-pick" data-tier="crescent">
+              <div class="glyph">◔</div>
+              <div class="name">Crescent</div>
+              <div class="amt">$50</div>
+              <div class="cad">Monthly</div>
+            </div>
+            <div class="tier-pick" data-tier="fullmoon">
+              <div class="glyph">●</div>
+              <div class="name">Full Moon</div>
+              <div class="amt">$100</div>
+              <div class="cad">Monthly</div>
+            </div>
+            <div class="tier-pick" data-tier="luminary">
+              <div class="glyph">✦</div>
+              <div class="name">Luminary</div>
+              <div class="amt">$1,000</div>
+              <div class="cad">Annual</div>
+            </div>
+            <div class="tier-pick" data-tier="founding">
+              <div class="glyph">✧</div>
+              <div class="name">Founding Luminary</div>
+              <div class="amt">$5,000+</div>
+              <div class="cad">Annual</div>
+            </div>
+          </div>
+
+          <div class="custom-amount">
+            <div class="label">Or choose any amount</div>
+            <div class="preset-row">
+              <button type="button" data-preset="25">$25</button>
+              <button type="button" data-preset="50" class="active">$50</button>
+              <button type="button" data-preset="100">$100</button>
+              <button type="button" data-preset="250">$250</button>
+              <button type="button" data-preset="500">$500</button>
+              <button type="button" data-preset="1000">$1,000</button>
+            </div>
+            <div class="amount-input">
+              <span class="dollar">$</span>
+              <input type="number" min="1" data-amount value="50" />
+            </div>
+          </div>
+
+          <div class="step-actions right">
+            <button type="button" class="btn btn-primary" data-step-next>
+              Continue
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Details + payment -->
+        <div data-step="2" style="display: none;">
+          <h2 style="font-size: var(--step-3); margin-bottom: 8px;">Your details.</h2>
+          <p style="color: var(--ink-soft); margin-bottom: 26px;">Everything is mock — this is a demo flow. No real charges.</p>
+
+          <form data-donate-form id="donate-form">
+            <div class="pay-grid">
+              <div class="row-2">
+                <div class="field">
+                  <label>First name</label>
+                  <input type="text" name="firstname" required />
+                  <div class="err">Required</div>
+                </div>
+                <div class="field">
+                  <label>Last name</label>
+                  <input type="text" name="lastname" required />
+                  <div class="err">Required</div>
+                </div>
+              </div>
+              <div class="field">
+                <label>Email — for receipt &amp; updates</label>
+                <input type="email" name="email" required />
+                <div class="err">Valid email required</div>
+              </div>
+
+              <div class="pay-section">
+                <h3>Payment method</h3>
+                <p class="sub">Card details are demo only — nothing is charged.</p>
+
+                <div class="pay-method-toggle">
+                  <button type="button" class="active"><span class="glyph">💳</span><span>Card</span></button>
+                  <button type="button"><span class="glyph">🏦</span><span>ACH / Bank</span></button>
+                  <button type="button"><span class="glyph">📱</span><span>Apple / Google Pay</span></button>
+                </div>
+
+                <div class="card-mock">
+                  <div class="brand">LUNA · FOUNDING CIRCLE</div>
+                  <div class="num">•••• •••• •••• ••••</div>
+                  <div class="row"><span>Cardholder</span><span>Exp · CVC</span></div>
+                </div>
+
+                <div class="field">
+                  <label>Card number</label>
+                  <input type="text" name="card" placeholder="4242 4242 4242 4242" required data-card-num />
+                  <div class="err">Required</div>
+                </div>
+                <div class="row-2">
+                  <div class="field">
+                    <label>Expiration</label>
+                    <input type="text" name="exp" placeholder="MM / YY" required data-card-exp />
+                    <div class="err">Required</div>
+                  </div>
+                  <div class="field">
+                    <label>CVC</label>
+                    <input type="text" name="cvc" placeholder="123" required maxlength="4" />
+                    <div class="err">Required</div>
+                  </div>
+                </div>
+                <div class="row-2">
+                  <div class="field">
+                    <label>Zip</label>
+                    <input type="text" name="zip" required />
+                    <div class="err">Required</div>
+                  </div>
+                  <div class="field">
+                    <label>Country</label>
+                    <select name="country">
+                      <option>United States</option>
+                      <option>Canada</option>
+                      <option>Mexico</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>Anything you'd like to share? (optional)</label>
+                  <textarea name="note" placeholder="A note for Alejandra, your motivation, or simply hello."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn btn-ghost btn-sm" data-step-prev>← Back</button>
+              <button type="submit" class="btn btn-gold">
+                Give <span data-summary="amount">$50</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- STEP 3: Success -->
+        <div data-step="3" style="display: none;">
+          <div class="donate-success">
+            <div class="moon-big">◑</div>
+            <h2>You're in the Circle.</h2>
+            <p>Thank you for underwriting Luna's founding year. A receipt is on its way to your inbox. Alejandra will send a personal note in the next week.</p>
+            <div class="receipt">
+              <div class="line"><span>Gift</span><span data-summary="tier">Crescent</span></div>
+              <div class="line"><span>Cadence</span><span data-summary="cadence">monthly</span></div>
+              <div class="line"><span>Annualized</span><span data-summary="annual">$600</span></div>
+              <div class="line"><span>Total today</span><span data-summary="amount">$50</span></div>
+            </div>
+            <div style="margin-top: 36px; display:flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+              <a href="index.html" class="btn btn-primary">Back to home</a>
+              <a href="events.html" class="btn btn-ghost">See upcoming events</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Summary -->
+      <aside>
+        <div class="summary-card" data-reveal>
+          <div class="eyebrow">Your gift</div>
+          <div class="big-num"><span data-summary="amount">$50</span></div>
+          <div class="cadence-line"><span data-summary="cadence">monthly</span></div>
+          <div class="tier-line">
+            <span class="key">Circle</span>
+            <span class="val" data-summary="tier">Crescent</span>
+          </div>
+          <div class="tier-line">
+            <span class="key">Annual impact</span>
+            <span class="val" data-summary="annual">$600</span>
+          </div>
+
+          <div class="impact-list">
+            <div class="head">A $50 / month gift covers</div>
+            <ul>
+              <li>One free youth seat per month</li>
+              <li>Supplies for a Family Art Day</li>
+              <li>A musician's open-jam stipend</li>
+              <li>Print materials for one Luna Night</li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 22px; font-size: 0.78rem; color: var(--ink-mute); line-height: 1.5;">
+            Luna Wilmington Arts Academy is a Delaware nonprofit seeking 501(c)(3) status. Donations support free and donation-based arts learning, supplies, paid local artist instructors, and operating costs.
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FUNDING MIX ===== -->
+<section class="funding-mix" data-screen-label="04 Funding mix">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">A layered funding model</div>
+        <h2>No single source<br/>over 30%.</h2>
+      </div>
+      <div class="desc">Six streams, each underwritten by a different community. If one slows, the others keep the doors open.</div>
+    </div>
+
+    <div class="mix-grid">
+      <div class="mix-card" data-reveal>
+        <div class="pct">27%</div>
+        <h4>Founding Donors</h4>
+        <p>$40K · The Founding Circle &amp; major gifts</p>
+      </div>
+      <div class="mix-card" data-reveal style="--reveal-delay:0.05s;">
+        <div class="pct">13%</div>
+        <h4>Recurring Small</h4>
+        <p>$20K · Monthly Moonbeams &amp; Crescents</p>
+      </div>
+      <div class="mix-card" data-reveal style="--reveal-delay:0.10s;">
+        <div class="pct">17%</div>
+        <h4>Events</h4>
+        <p>$25K · Paint the Moon &amp; quarterly fundraisers</p>
+      </div>
+      <div class="mix-card" data-reveal style="--reveal-delay:0.15s;">
+        <div class="pct">17%</div>
+        <h4>Sponsorships</h4>
+        <p>$25K · Local businesses underwriting classes</p>
+      </div>
+      <div class="mix-card" data-reveal style="--reveal-delay:0.20s;">
+        <div class="pct">20%</div>
+        <h4>Grants</h4>
+        <p>$30K · Division of the Arts &amp; foundations</p>
+      </div>
+      <div class="mix-card" data-reveal style="--reveal-delay:0.25s;">
+        <div class="pct">6%+</div>
+        <h4>In-kind</h4>
+        <p>$10K+ · Goods, services, and labor</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq" data-screen-label="05 FAQ">
+  <div class="wrap-narrow">
+    <div class="section-head" data-reveal style="grid-template-columns: 1fr; text-align: center;">
+      <div>
+        <div class="eyebrow center" style="justify-content:center;">Questions</div>
+        <h2 style="margin-top: 18px;">Frequently asked.</h2>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item" data-reveal>
+        <summary>Is my gift tax-deductible?</summary>
+        <div class="body">Luna Wilmington Arts Academy is a Delaware nonprofit corporation seeking 501(c)(3) tax-exempt status. Until the IRS determination letter arrives, we clearly state that tax-exempt status is pending in all donor communications. Once recognized, donor deductibility generally applies retroactively to the date of incorporation. We'll keep your receipt on file either way.</div>
+      </details>
+      <details class="faq-item" data-reveal>
+        <summary>Can I change or cancel my recurring gift?</summary>
+        <div class="body">Yes, anytime. Recurring giving is built on trust — life changes, and we want supporting Luna to feel like a gift, not an obligation. Email us or use the link in your monthly receipt to pause, change the amount, or end the recurring gift.</div>
+      </details>
+      <details class="faq-item" data-reveal>
+        <summary>Where exactly does my money go?</summary>
+        <div class="body">First-year budget is ~$150K. Roughly: founder &amp; ED compensation, artist instructor stipends, rent and utilities, supplies, events, insurance, software, and a contingency reserve. Donors may request information about how contributions are allocated at any time — that's part of our Delaware disclosure obligation, and it's also just the right thing to do.</div>
+      </details>
+      <details class="faq-item" data-reveal>
+        <summary>Why donation-based, not tuition?</summary>
+        <div class="body">Because cost is the wall most Wilmington families hit. A donation model means a $5 contribution from a service-industry parent and a $5,000 contribution from a Founding Luminary both keep the doors open — and neither becomes a gatekeeper. Sliding-scale and pay-what-you-can are the default, not the exception.</div>
+      </details>
+      <details class="faq-item" data-reveal>
+        <summary>Can I give stock, crypto, or via a donor-advised fund?</summary>
+        <div class="body">Once 501(c)(3) recognition is in hand, yes — for stock and DAF gifts. We can also accept in-kind donations of goods and services (paint, instruments, legal, printing, etc.) right now. Email us at <a href="mailto:hello@lunawilm.org" style="color: var(--plum);">hello@lunawilm.org</a> and we'll work out the cleanest path.</div>
+      </details>
+      <details class="faq-item" data-reveal>
+        <summary>Is Luna affiliated with Over the Border Tacos?</summary>
+        <div class="body">No. The Whale Building corridor next to Over the Border Tacos is the proposed home because of foot traffic and the existing community gathering pattern. Luna is a separate nonprofit entity. Conflict of interest policy, annual disclosures, and recusal protocols ensure the nonprofit's resources never subsidize any for-profit operation.</div>
+      </details>
+      <details class="faq-item" data-reveal>
+        <summary>Can my business sponsor instead of donate?</summary>
+        <div class="body">Yes — see the <a href="get-involved.html#sponsor" style="color: var(--plum);">Sponsor tiers</a> on the Get Involved page. Class, series, and year-long sponsorships all come with public recognition and customizable benefits.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-lockup">
+        <img src="assets/logo.png" alt="Luna Art Academy" />
+        <div class="name">Luna Art Academy</div>
+        <div class="tagline">Where Wilmington creates together.</div>
+        <p>A donation-supported, multicultural arts learning academy on the Wilmington riverfront.</p>
+      </div>
+      <div><h4>Visit</h4><ul><li><a href="about.html">About</a></li><li><a href="programs.html">Programs</a></li><li><a href="events.html">Events</a></li><li><a href="artists.html">Artists</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Give</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="donate.html#circle">Founding Circle</a></li><li><a href="get-involved.html#sponsor">Sponsor a class</a></li><li><a href="get-involved.html#inkind">In-kind giving</a></li></ul></div>
+      <div><h4>Participate</h4><ul><li><a href="get-involved.html#volunteer">Volunteer</a></li><li><a href="get-involved.html#instructor">Teach a class</a></li><li><a href="get-involved.html#board">Board interest</a></li><li><a href="get-involved.html#partner">Community partners</a></li></ul></div>
+    </div>
+    <div class="footer-disclaim">Luna Wilmington Arts Academy, Inc. is a Delaware nonprofit corporation seeking 501(c)(3) tax-exempt status. Donations support free and donation-based arts learning, supplies, local artist instructors, community programming, and operating costs. Donors may request information about how contributions are allocated.</div>
+    <div class="footer-bottom">
+      <div>© 2026 Luna Wilmington Arts Academy, Inc. · Wilmington, Delaware</div>
+      <div>Made with care on the river.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+  // Sync step indicator bubbles to the donate flow
+  (function () {
+    const root = document.querySelector('[data-donate-flow]');
+    if (!root) return;
+    const bubbles = [document.getElementById('b1'), document.getElementById('b2'), document.getElementById('b3')];
+    function syncBubbles() {
+      const steps = root.querySelectorAll('[data-step]');
+      let active = 1;
+      steps.forEach((s) => {
+        if (s.style.display !== 'none') active = Number(s.getAttribute('data-step'));
+      });
+      bubbles.forEach((b, i) => {
+        if (!b) return;
+        b.classList.remove('active', 'done');
+        const stepNum = i + 1;
+        if (stepNum < active) b.classList.add('done');
+        if (stepNum === active) b.classList.add('active');
+      });
+    }
+    // Observe step display changes
+    new MutationObserver(syncBubbles).observe(root, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['style']
+    });
+    syncBubbles();
+  })();
+
+  // Payment-method toggle visual
+  document.querySelectorAll('.pay-method-toggle').forEach(toggle => {
+    toggle.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  });
+
+  // Mirror card mock as user types
+  const cardInput = document.querySelector('[data-card-num]');
+  const expInput = document.querySelector('[data-card-exp]');
+  const cardMockNum = document.querySelector('.card-mock .num');
+  const cardMockRow = document.querySelector('.card-mock .row');
+  if (cardInput && cardMockNum) {
+    cardInput.addEventListener('input', () => {
+      const padded = (cardInput.value + ' '.repeat(19)).slice(0, 19);
+      cardMockNum.textContent = padded.replace(/ /g, '•').replace(/(\S{4})/g, '$1 ').trim();
+      cardMockNum.textContent = cardInput.value
+        ? (cardInput.value + '••••••••••••••••').slice(0, 19).replace(/\S/g, (c, i) => i < cardInput.value.replace(/\s/g, '').length || c === ' ' ? c : '•')
+        : '•••• •••• •••• ••••';
+      // Simpler: format current input with •
+      let raw = cardInput.value.replace(/\s/g, '');
+      let display = '';
+      for (let i = 0; i < 16; i++) {
+        display += i < raw.length ? raw[i] : '•';
+        if ((i + 1) % 4 === 0 && i < 15) display += ' ';
+      }
+      cardMockNum.textContent = display;
+    });
+  }
+</script>
+</body>
+</html>

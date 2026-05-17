@@ -1,0 +1,145 @@
+/* =====================================================================
+   Luna Wilmington Arts Academy — Design Tokens
+   Warm & folkloric palette pulled directly from the logo:
+   golden moon, royal purple swirls, magenta filigree, teal & orange.
+   ===================================================================== */
+
+:root {
+  /* —— Surface (warm paper-like backgrounds) —— */
+  --bone:        #FBF6EC;  /* primary page background — warm paper */
+  --cream:       #F3E8D4;  /* secondary surface — buttery */
+  --cream-deep:  #E8D5B7;  /* tertiary — aged paper */
+  --sand:        #D9C3A1;  /* warm muted */
+  --shell:       #FFFBF3;  /* highlight / card surface */
+
+  /* —— Inks (deep purples for text) —— */
+  --ink:         #2A1538;  /* deep aubergine — primary text */
+  --ink-soft:    #4B3068;  /* secondary text */
+  --ink-mute:    #7B6A8A;  /* muted text */
+  --ink-line:    #2A153822;/* dividers on cream */
+
+  /* —— Brand colors —— */
+  --moon:        #F5C518;  /* the bright LUNA yellow */
+  --gold:        #E9A93C;  /* warm gold (filigree) */
+  --gold-deep:   #B8821D;  /* dark gold accent */
+  --plum:        #6B2D8C;  /* royal purple swirls */
+  --plum-deep:   #3F1A55;  /* deepest purple */
+  --rose:        #D6336C;  /* magenta from filigree */
+  --rose-soft:   #E66B96;  /* warmer pink */
+  --teal:        #1F8A8C;  /* teal accent */
+  --teal-deep:   #115E60;
+  --orange:      #F58A1F;  /* warm orange */
+  --terracotta:  #C25928;  /* deep terracotta */
+
+  /* —— Painterly composite gradients used for image placeholders —— */
+  --paint-1: radial-gradient(at 20% 20%, #F5C518 0%, transparent 45%),
+             radial-gradient(at 80% 30%, #D6336C 0%, transparent 55%),
+             radial-gradient(at 60% 80%, #6B2D8C 0%, transparent 60%),
+             linear-gradient(135deg, #2A1538 0%, #6B2D8C 100%);
+
+  --paint-2: radial-gradient(at 30% 70%, #1F8A8C 0%, transparent 50%),
+             radial-gradient(at 70% 30%, #F58A1F 0%, transparent 55%),
+             radial-gradient(at 50% 90%, #6B2D8C 0%, transparent 60%),
+             linear-gradient(160deg, #3F1A55 0%, #1F8A8C 100%);
+
+  --paint-3: radial-gradient(at 25% 25%, #F5C518 0%, transparent 40%),
+             radial-gradient(at 75% 60%, #C25928 0%, transparent 50%),
+             radial-gradient(at 40% 90%, #D6336C 0%, transparent 55%),
+             linear-gradient(135deg, #6B2D8C 0%, #C25928 100%);
+
+  --paint-4: radial-gradient(at 70% 20%, #E9A93C 0%, transparent 45%),
+             radial-gradient(at 20% 50%, #1F8A8C 0%, transparent 55%),
+             radial-gradient(at 80% 90%, #D6336C 0%, transparent 50%),
+             linear-gradient(180deg, #2A1538 0%, #4B3068 100%);
+
+  --paint-warm: radial-gradient(at 30% 30%, #F5C518 0%, transparent 50%),
+                radial-gradient(at 70% 70%, #F58A1F 0%, transparent 55%),
+                linear-gradient(135deg, #C25928 0%, #D6336C 100%);
+
+  --paint-cool: radial-gradient(at 30% 30%, #1F8A8C 0%, transparent 50%),
+                radial-gradient(at 70% 70%, #6B2D8C 0%, transparent 60%),
+                linear-gradient(135deg, #2A1538 0%, #115E60 100%);
+
+  /* —— Type —— */
+  --font-display: 'Cinzel Decorative', 'Cormorant Garamond', serif;
+  --font-serif:   'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'DM Mono', ui-monospace, monospace;
+
+  /* —— Scale —— */
+  --step--1: clamp(0.78rem, 0.74rem + 0.20vw, 0.88rem);
+  --step-0:  clamp(0.95rem, 0.92rem + 0.20vw, 1.05rem);
+  --step-1:  clamp(1.15rem, 1.10rem + 0.30vw, 1.30rem);
+  --step-2:  clamp(1.40rem, 1.30rem + 0.50vw, 1.65rem);
+  --step-3:  clamp(1.75rem, 1.55rem + 1.00vw, 2.30rem);
+  --step-4:  clamp(2.20rem, 1.90rem + 1.50vw, 3.20rem);
+  --step-5:  clamp(2.80rem, 2.30rem + 2.50vw, 4.50rem);
+  --step-6:  clamp(3.40rem, 2.60rem + 4.00vw, 6.40rem);
+
+  /* —— Geometry —— */
+  --radius-sm: 6px;
+  --radius:    14px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+  --radius-blob: 48% 52% 38% 62% / 55% 45% 55% 45%;
+
+  --shadow-soft: 0 1px 2px rgba(42,21,56,0.06), 0 12px 32px rgba(42,21,56,0.08);
+  --shadow-lift: 0 2px 6px rgba(42,21,56,0.08), 0 28px 60px rgba(42,21,56,0.18);
+  --shadow-deep: 0 4px 12px rgba(42,21,56,0.12), 0 40px 90px rgba(42,21,56,0.28);
+
+  --maxw: 1320px;
+  --gutter: clamp(20px, 4vw, 56px);
+}
+
+/* —— Base reset —— */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bone);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bone);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Subtle paper grain on every page */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(42,21,56,0.04) 1px, transparent 1px),
+    radial-gradient(rgba(245,197,24,0.025) 1px, transparent 1px);
+  background-size: 3px 3px, 5px 5px;
+  background-position: 0 0, 1px 2px;
+  mix-blend-mode: multiply;
+  z-index: 9999;
+  opacity: 0.6;
+}
+
+img { max-width: 100%; display: block; }
+button { font: inherit; }
+a { color: inherit; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  line-height: 1.05;
+  margin: 0;
+  color: var(--ink);
+}
+
+p { margin: 0; }
+
+.text-pretty { text-wrap: pretty; }
+.text-balance { text-wrap: balance; }
