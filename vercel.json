@@ -3,7 +3,19 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/home", "destination": "/", "permanent": true }
+    { "source": "/home", "destination": "/", "permanent": true },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "lunaartacademy.org" }],
+      "destination": "https://lunaartsacademy.org/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.lunaartacademy.org" }],
+      "destination": "https://lunaartsacademy.org/:path*",
+      "permanent": true
+    }
   ],
   "headers": [
     {
