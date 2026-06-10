@@ -1,0 +1,9 @@
+name = "luna-forms"
+main = "luna-forms.js"
+compatibility_date = "2026-06-01"
+
+# Secrets (NOT stored here) — set after first deploy:
+#   wrangler secret put RESEND_API_KEY
+#
+# If the account has more than one membership, wrangler will ask which to use,
+# or set:  account_id = "..."

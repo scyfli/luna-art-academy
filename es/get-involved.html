@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Participa · Luna Arts Academy</title>
+<meta name="description" content="Hazte voluntario/a, enseña una clase, forma parte de la junta directiva, patrocina o conviértete en aliado de Luna Arts Academy en Wilmington, Delaware." />
+<link rel="icon" type="image/png" href="../assets/logo.png" />
+<link rel="canonical" href="https://lunaartsacademy.org/es/get-involved" />
+<link rel="alternate" hreflang="en" href="https://lunaartsacademy.org/get-involved" />
+<link rel="alternate" hreflang="es" href="https://lunaartsacademy.org/es/get-involved" />
+<link rel="alternate" hreflang="x-default" href="https://lunaartsacademy.org/get-involved" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Luna Arts Academy of Wilmington" />
+<meta property="og:title" content="Participa · Luna Arts Academy" />
+<meta property="og:description" content="Hazte voluntario/a, enseña una clase, forma parte de la junta directiva, patrocina o conviértete en aliado de Luna Arts Academy en Wilmington, Delaware." />
+<meta property="og:url" content="https://lunaartsacademy.org/es/get-involved" />
+<meta property="og:image" content="https://lunaartsacademy.org/assets/logo.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Participa · Luna Arts Academy" />
+<meta name="twitter:description" content="Hazte voluntario/a, enseña una clase, forma parte de la junta directiva, patrocina o conviértete en aliado de Luna Arts Academy en Wilmington, Delaware." />
+<meta name="twitter:image" content="https://lunaartsacademy.org/assets/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/tokens.css" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  /* Ways grid */
+  .ways {
+    padding: 80px 0 40px;
+  }
+  .ways-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  @media (max-width: 900px) { .ways-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .ways-grid { grid-template-columns: 1fr; } }
+  .way {
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    transition: all 0.3s ease;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .way::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--moon), var(--rose));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .way:hover::before { transform: scaleX(1); }
+  .way:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--gold);
+  }
+  .way .glyph {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--gold-deep);
+    margin-bottom: 14px;
+    line-height: 1;
+  }
+  .way h3 { font-size: 1.35rem; margin-bottom: 8px; }
+  .way p { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.5; margin-bottom: 14px; }
+  .way .arrow {
+    color: var(--plum);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+
+  /* Application section */
+  .app-section {
+    padding: 120px 0;
+    position: relative;
+  }
+  .app-section.alt { background: var(--cream); }
+  .app-section.dark {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .app-section.dark h2 { color: var(--bone); }
+  .app-section.dark .eyebrow { color: var(--moon); }
+  .app-section.dark p { color: rgba(251,246,236,0.85); }
+  .app-section.dark .field label { color: var(--moon); }
+  .app-section.dark .field input,
+  .app-section.dark .field textarea,
+  .app-section.dark .field select {
+    background: rgba(251,246,236,0.06);
+    color: var(--bone);
+    border-color: rgba(251,246,236,0.2);
+  }
+  .app-section.dark .field input:focus,
+  .app-section.dark .field textarea:focus,
+  .app-section.dark .field select:focus {
+    border-color: var(--moon);
+    box-shadow: 0 0 0 4px rgba(245,197,24,0.18);
+  }
+  .app-section.dark .check {
+    background: rgba(251,246,236,0.06);
+    border-color: rgba(251,246,236,0.2);
+    color: var(--bone);
+  }
+  .app-section.dark .check:has(input:checked) {
+    background: var(--moon);
+    color: var(--ink);
+    border-color: var(--moon);
+  }
+
+  .app-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .app-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .app-text h2 { font-size: var(--step-4); margin-bottom: 18px; }
+  .app-text .lede {
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    margin-bottom: 24px;
+  }
+  .app-section.dark .app-text .lede { color: rgba(251,246,236,0.85); }
+  .app-text p { color: var(--ink-soft); line-height: 1.65; margin-bottom: 14px; }
+  .app-text ul {
+    list-style: none; padding: 0; margin: 18px 0;
+  }
+  .app-text ul li {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+  .app-section.dark .app-text ul li { color: rgba(251,246,236,0.85); }
+  .app-text ul li::before {
+    content: "◐";
+    position: absolute; left: 0; top: 8px;
+    color: var(--gold);
+    font-size: 0.85rem;
+  }
+  .app-section.dark .app-text ul li::before { color: var(--moon); }
+
+  /* Form card */
+  .app-form-card {
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    box-shadow: var(--shadow-soft);
+  }
+  .app-section.dark .app-form-card {
+    background: rgba(251,246,236,0.04);
+    border-color: rgba(251,246,236,0.15);
+  }
+  .app-section.alt .app-form-card { background: var(--bone); }
+  .app-form-card form {
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .form-grid-2 {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  @media (max-width: 600px) { .form-grid-2 { grid-template-columns: 1fr; } }
+  .app-form-card .submit {
+    margin-top: 14px;
+    display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 1px solid var(--ink-line);
+  }
+  .app-section.dark .app-form-card .submit { border-color: rgba(251,246,236,0.15); }
+  .app-form-card .submit .fine {
+    flex: 1;
+    font-size: 0.82rem;
+    color: var(--ink-mute);
+  }
+  .app-section.dark .app-form-card .submit .fine { color: rgba(251,246,236,0.6); }
+
+  /* In-kind list */
+  .inkind {
+    padding: 120px 0;
+  }
+  .inkind-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-top: 60px;
+  }
+  @media (max-width: 900px) { .inkind-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .inkind-grid { grid-template-columns: 1fr; } }
+  .inkind-item {
+    background: var(--cream);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    display: flex; align-items: center; gap: 12px;
+    border: 1px solid var(--ink-line);
+    transition: background 0.3s ease;
+  }
+  .inkind-item:hover { background: var(--moon); }
+  .inkind-item .check-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--moon);
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+  .inkind-item:hover .check-icon { background: var(--bone); }
+  .inkind-item .name { font-family: var(--font-display); font-size: 0.95rem; }
+
+  /* Sponsor tiers */
+  .sponsor {
+    padding: 120px 0;
+    background: var(--cream);
+  }
+  .sponsor-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-top: 60px;
+  }
+  @media (max-width: 900px) { .sponsor-grid { grid-template-columns: 1fr; } }
+  .sponsor-card {
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-xl);
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .sponsor-card.featured {
+    background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 100%);
+    color: var(--bone);
+    border-color: var(--plum);
+    transform: translateY(-12px);
+  }
+  @media (max-width: 900px) { .sponsor-card.featured { transform: none; } }
+  .sponsor-card .tier {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    color: var(--rose);
+    margin-bottom: 10px;
+  }
+  .sponsor-card.featured .tier { color: var(--moon); }
+  .sponsor-card h3 { font-size: 1.6rem; margin-bottom: 8px; }
+  .sponsor-card.featured h3 { color: var(--bone); }
+  .sponsor-card .price {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    color: var(--ink);
+    margin: 12px 0 24px;
+    line-height: 1;
+  }
+  .sponsor-card.featured .price { color: var(--moon); }
+  .sponsor-card .price small {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 6px;
+  }
+  .sponsor-card.featured .price small { color: rgba(251,246,236,0.7); }
+  .sponsor-card ul {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .sponsor-card ul li {
+    padding-left: 22px;
+    position: relative;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+  .sponsor-card.featured ul li { color: rgba(251,246,236,0.88); }
+  .sponsor-card ul li::before {
+    content: "◐";
+    position: absolute; left: 0;
+    color: var(--gold-deep);
+  }
+  .sponsor-card.featured ul li::before { color: var(--moon); }
+  .sponsor-card .featured-badge {
+    position: absolute;
+    top: 0; right: 24px;
+    background: var(--moon);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    padding: 6px 12px;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="pulse">Año fundacional 2026 · Wilmington, Delaware</div>
+    <div class="right">
+      <span class="hideS">Una academia de artes sostenida por donaciones.</span>
+      <a href="donate.html">Únete al Círculo Fundador →</a>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">
+      <img src="../assets/logo.png" alt="Luna Arts Academy" />
+      <div class="lockup">Luna<small>Arts Academy</small></div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="about.html">Nosotros</a></li>
+      <li><a href="programs.html">Programas</a></li>
+      <li><a href="events.html">Eventos</a></li>
+      <li><a href="artists.html">Artistas</a></li>
+      <li><a href="get-involved.html" class="active">Participa</a></li>
+      <li><a href="contact.html">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="donate.html" class="btn btn-gold btn-sm">Donar</a>
+      <a href="../get-involved.html" class="lang-toggle" lang="en" aria-label="English version">EN</a>
+      <button class="nav-burger" aria-label="Abrir menú" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer">
+  <button class="close" aria-label="Cerrar menú" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+  </button>
+  <a href="index.html">Inicio</a><a href="about.html">Nosotros</a><a href="programs.html">Programas</a><a href="events.html">Eventos</a><a href="artists.html">Artistas</a><a href="get-involved.html">Participa</a><a href="contact.html">Contacto</a><a href="donate.html">Donar</a><a href="../get-involved.html" lang="en">English</a>
+</div>
+
+<section class="page-head" data-screen-label="01 Get Involved head">
+  <div class="wrap-narrow">
+    <div class="eyebrow center" style="justify-content:center;">Participa</div>
+    <h1>Hay una puerta para ti.</h1>
+    <p class="lede">Donante fundador, candidato a la junta directiva, negocio patrocinador, instructor, voluntario, aliado comunitario — Luna funciona gracias a la gente de Wilmington. Elige la puerta que te quede.</p>
+  </div>
+</section>
+
+<!-- ===== WAYS GRID ===== -->
+<section class="ways" data-screen-label="02 Ways">
+  <div class="wrap">
+    <div class="ways-grid">
+      <a href="#volunteer" class="way" data-reveal>
+        <div class="glyph">◐</div>
+        <h3>Voluntariado</h3>
+        <p>Desde el montaje de eventos hasta redes sociales y asistentes de enseñanza. 50 voluntarios activos para fin de año.</p>
+        <span class="arrow">Postúlate como voluntario/a →</span>
+      </a>
+      <a href="#instructor" class="way" data-reveal style="--reveal-delay:0.05s;">
+        <div class="glyph">✦</div>
+        <h3>Enseña una clase</h3>
+        <p>Artistas, músicos y guardianes de la cultura locales — trae tu disciplina. Estipendio pagado por sesión.</p>
+        <span class="arrow">Postúlate para enseñar →</span>
+      </a>
+      <a href="#board" class="way" data-reveal style="--reveal-delay:0.10s;">
+        <div class="glyph">◑</div>
+        <h3>Servicio en la junta directiva</h3>
+        <p>De cinco a siete puestos. Experiencia profesional más credibilidad comunitaria. Compromiso fundador de dos años.</p>
+        <span class="arrow">Expresa tu interés en la junta directiva →</span>
+      </a>
+      <a href="#sponsor" class="way" data-reveal style="--reveal-delay:0.15s;">
+        <div class="glyph">★</div>
+        <h3>Patrocina una clase</h3>
+        <p>Restaurantes, bares, salones de belleza, bancos — tu negocio puede financiar una clase, una serie o un año entero.</p>
+        <span class="arrow">Mira los niveles de patrocinio →</span>
+      </a>
+      <a href="#inkind" class="way" data-reveal style="--reveal-delay:0.20s;">
+        <div class="glyph">◌</div>
+        <h3>Donaciones en especie</h3>
+        <p>Pintura, instrumentos, sillas, impresión, comida. El apoyo en especie hace rendir cada dólar en efectivo.</p>
+        <span class="arrow">Mira lo que necesitamos →</span>
+      </a>
+      <a href="#partner" class="way" data-reveal style="--reveal-delay:0.25s;">
+        <div class="glyph">∞</div>
+        <h3>Aliado comunitario</h3>
+        <p>Escuelas, iglesias, centros comunitarios, galerías. Las alianzas son nuestra herramienta de crecimiento más poderosa.</p>
+        <span class="arrow">Inicia una conversación →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VOLUNTEER ===== -->
+<section class="app-section" id="volunteer" data-screen-label="03 Volunteer">
+  <div class="wrap">
+    <div class="app-grid">
+      <div class="app-text" data-reveal>
+        <div class="eyebrow">VOLUNTARIADO · 50 para fin de año</div>
+        <h2>Los voluntarios son el tejido que nos une.</h2>
+        <p class="lede">Luna pasa de 50 voluntarios activos en el primer año hacia un cuerpo de voluntarios estructurado en el segundo.</p>
+        <p>Cada voluntario completa una solicitud breve, firma un código de conducta y se compromete con un calendario de 60–90 días. Los voluntarios que trabajan directamente con menores completan una verificación de antecedentes.</p>
+        <p><strong>Grupos de voluntariado:</strong></p>
+        <ul>
+          <li>Artistas voluntarios e instructores invitados</li>
+          <li>Asistentes de taller y apoyo en el estudio</li>
+          <li>Equipo de montaje de eventos y hospitalidad</li>
+          <li>Voluntarios de redes sociales y contenido</li>
+          <li>Embajadores de recaudación de fondos</li>
+          <li>Equipo de limpieza y reacomodo</li>
+          <li>Estudiantes en prácticas</li>
+        </ul>
+      </div>
+
+      <div class="app-form-card" data-reveal style="--reveal-delay:0.1s;">
+        <div class="eyebrow">SOLICITUD DE VOLUNTARIADO</div>
+        <h3 style="font-size: 1.6rem; margin: 8px 0 20px;">Cuéntanos un poco sobre ti.</h3>
+        <form data-mock-submit data-form-type="volunteer">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" />
+          <div class="form-grid-2">
+            <div class="field">
+              <label>Nombre</label>
+              <input type="text" name="firstname" required />
+              <div class="err">Obligatorio</div>
+            </div>
+            <div class="field">
+              <label>Apellido</label>
+              <input type="text" name="lastname" required />
+              <div class="err">Obligatorio</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Correo electrónico</label>
+            <input type="email" name="email" required />
+            <div class="err">Ingresa un correo electrónico válido.</div>
+          </div>
+          <div class="field">
+            <label>Teléfono (opcional)</label>
+            <input type="tel" name="phone" />
+          </div>
+          <div class="field">
+            <label>¿Qué roles te interesan? (elige los que quieras)</label>
+            <div class="checks">
+              <label class="check"><input type="checkbox" name="role" value="setup" /> Montaje de eventos</label>
+              <label class="check"><input type="checkbox" name="role" value="hospitality" /> Hospitalidad</label>
+              <label class="check"><input type="checkbox" name="role" value="studio" /> Asistente de estudio</label>
+              <label class="check"><input type="checkbox" name="role" value="social" /> Redes sociales</label>
+              <label class="check"><input type="checkbox" name="role" value="reset" /> Limpieza y reacomodo</label>
+              <label class="check"><input type="checkbox" name="role" value="ambassador" /> Embajador de donantes</label>
+            </div>
+          </div>
+          <div class="field">
+            <label>Disponibilidad</label>
+            <select name="availability">
+              <option>Entre semana por la noche</option>
+              <option>Fines de semana</option>
+              <option>Ambos</option>
+              <option>Solo eventos (ocasional)</option>
+              <option>Flexible</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>¿Algo más que debamos saber?</label>
+            <textarea name="notes" placeholder="Idiomas que hablas, habilidades, necesidades de accesibilidad, etc."></textarea>
+          </div>
+          <div class="submit">
+            <div class="fine">Te responderemos en menos de una semana.</div>
+            <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+          </div>
+        </form>
+
+        <div class="success-state" style="display: none;">
+          <div class="moon">◑</div>
+          <h3>Gracias.</h3>
+          <p style="margin-top: 12px; color: var(--ink-soft);">Una persona coordinadora de voluntariado se pondrá en contacto contigo en menos de una semana. Nos alegra que estés aquí.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTRUCTOR APPLICATION ===== -->
+<section class="app-section dark" id="instructor" data-screen-label="04 Instructor">
+  <div class="wrap">
+    <div class="app-grid">
+      <div class="app-text" data-reveal>
+        <div class="eyebrow">ENSEÑA UNA CLASE · Estipendio pagado</div>
+        <h2>Artistas locales, con pago.</h2>
+        <p class="lede">Luna contrata a artistas de Wilmington como educadores, intérpretes y trabajadores culturales. El estipendio lo fija la política de pago a artistas de la junta directiva y se paga la misma semana de la clase.</p>
+        <p>Puedes proponer un taller único, una serie de cuatro semanas, un espacio de presentación en Luna Night o una residencia del Método Rotativo en una de las doce disciplinas.</p>
+        <p><strong>Lo que buscamos:</strong></p>
+        <ul>
+          <li>Una idea de enseñanza clara y un público en mente</li>
+          <li>Raíces en Wilmington — experiencia vivida, no solo un portafolio</li>
+          <li>Humildad cultural y apertura hacia principiantes absolutos</li>
+          <li>Una lista de materiales razonable (normalmente podemos conseguirlos)</li>
+          <li>Disposición a recibir el pago como contratista independiente</li>
+        </ul>
+        <p style="margin-top: 24px;">Las verificaciones de antecedentes se completan antes de cualquier enseñanza que involucre a menores.</p>
+      </div>
+
+      <div class="app-form-card" data-reveal style="--reveal-delay:0.1s;">
+        <div class="eyebrow">PROPUESTA DE INSTRUCTOR</div>
+        <h3 style="font-size: 1.6rem; margin: 8px 0 20px; color: var(--bone);">Propónnos una clase.</h3>
+        <form data-mock-submit data-form-type="instructor">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" />
+          <div class="form-grid-2">
+            <div class="field">
+              <label>Nombre</label>
+              <input type="text" name="name" required />
+              <div class="err">Obligatorio</div>
+            </div>
+            <div class="field">
+              <label>Correo electrónico</label>
+              <input type="email" name="email" required />
+              <div class="err">Se requiere un correo válido</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Pilar / disciplina</label>
+            <select name="pillar">
+              <option>Acceso a la música</option>
+              <option>Pintura y artes visuales</option>
+              <option>Método Rotativo — Fotografía</option>
+              <option>Método Rotativo — Collage</option>
+              <option>Método Rotativo — Palabra hablada</option>
+              <option>Método Rotativo — Grabado</option>
+              <option>Método Rotativo — Danza</option>
+              <option>Método Rotativo — Juegos teatrales</option>
+              <option>Método Rotativo — Arte público</option>
+              <option>Método Rotativo — Moda</option>
+              <option>Método Rotativo — Patrimonio cultural</option>
+              <option>Método Rotativo — Arte digital</option>
+              <option>Método Rotativo — Narrativa culinaria</option>
+              <option>Método Rotativo — Tradiciones artesanales</option>
+              <option>Espacio de presentación en Luna Night</option>
+              <option>Otra cosa</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Título de la clase</label>
+            <input type="text" name="title" required placeholder="p. ej. Fotografía con el celular para principiantes" />
+            <div class="err">Obligatorio</div>
+          </div>
+          <div class="field">
+            <label>Descripción de la clase (60—120 palabras)</label>
+            <textarea name="description" required placeholder="¿Qué harán los participantes? ¿Con qué se irán? ¿Para quién es?"></textarea>
+            <div class="err">Obligatorio</div>
+          </div>
+          <div class="form-grid-2">
+            <div class="field">
+              <label>Formato</label>
+              <select name="format">
+                <option>Taller único (90 min — 2 h)</option>
+                <option>Serie de cuatro semanas</option>
+                <option>Jam abierto / estudio abierto</option>
+                <option>Muestra / presentación</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Edad objetivo</label>
+              <select name="age">
+                <option>Todas las edades</option>
+                <option>Niños (5—12)</option>
+                <option>Adolescentes (13—17)</option>
+                <option>Adultos (18+)</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Portafolio / sitio web / Instagram (opcional)</label>
+            <input type="url" name="link" placeholder="https://" />
+          </div>
+          <div class="submit">
+            <div class="fine">La junta directiva revisa las propuestas cada mes.</div>
+            <button type="submit" class="btn btn-gold">Enviar propuesta</button>
+          </div>
+        </form>
+
+        <div class="success-state" style="display: none;">
+          <div class="moon">◑</div>
+          <h3 style="color: var(--bone);">Propuesta recibida.</h3>
+          <p style="margin-top: 12px; color: rgba(251,246,236,0.78);">Te responderemos después de la próxima reunión de revisión de la junta directiva. Gracias por ofrecerle tu oficio a Wilmington.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SPONSOR ===== -->
+<section class="sponsor" id="sponsor" data-screen-label="05 Sponsor">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">Patrocina una clase · Patrocina una serie · Patrocina un año</div>
+        <h2>Patrocinios de<br/>negocios locales.</h2>
+      </div>
+      <div class="desc">Restaurantes, bares, cafés, estudios de tatuaje, salones de belleza, salas de música, bancos, bienes raíces, despachos de abogados y contratistas — tres niveles, todos con reconocimiento público.</div>
+    </div>
+
+    <div class="sponsor-grid">
+      <div class="sponsor-card" data-reveal>
+        <div class="tier">PATROCINADOR DE CLASE</div>
+        <h3>Financia una sola clase.</h3>
+        <div class="price">$250 <small>por clase · pago único</small></div>
+        <ul>
+          <li>Tu nombre en la página de la clase</li>
+          <li>Mención verbal durante la clase</li>
+          <li>Reconocimiento en redes sociales</li>
+          <li>Reconocimiento en el informe de impacto</li>
+        </ul>
+        <a href="contact.html" class="btn btn-ghost btn-sm" style="margin-top: 26px;">Ponte en contacto</a>
+      </div>
+
+      <div class="sponsor-card featured" data-reveal style="--reveal-delay:0.1s;">
+        <span class="featured-badge">EL MÁS POPULAR</span>
+        <div class="tier">PATROCINADOR DE SERIE</div>
+        <h3>Financia una serie de cuatro semanas.</h3>
+        <div class="price">$1,500 <small>por serie</small></div>
+        <ul>
+          <li>"Presentado por [Tu Negocio]"</li>
+          <li>Logo en los materiales y volantes de la serie</li>
+          <li>Dos asientos reservados por sesión</li>
+          <li>Informe de impacto trimestral</li>
+          <li>Derechos de uso de fotos y video</li>
+          <li>Reconocimiento en el muro del Círculo Fundador</li>
+        </ul>
+        <a href="contact.html" class="btn btn-gold btn-sm" style="margin-top: 26px;">Inicia un patrocinio</a>
+      </div>
+
+      <div class="sponsor-card" data-reveal style="--reveal-delay:0.2s;">
+        <div class="tier">PATROCINADOR DE AÑO</div>
+        <h3>Financia el estudio por un año.</h3>
+        <div class="price">$15,000 <small>anual</small></div>
+        <ul>
+          <li>Sala de estudio nombrada en honor a tu negocio</li>
+          <li>Reconocimiento destacado en cada evento</li>
+          <li>Presencia destacada en el comunicado de prensa de lanzamiento</li>
+          <li>Reunión trimestral con la junta directiva</li>
+          <li>Oportunidades de alianza personalizadas</li>
+          <li>Cena anual de agradecimiento a donantes</li>
+        </ul>
+        <a href="contact.html" class="btn btn-ghost btn-sm" style="margin-top: 26px;">Habla con el fundador</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IN-KIND ===== -->
+<section class="inkind" id="inkind" data-screen-label="06 In-kind">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">Donaciones en especie</div>
+        <h2>Haz rendir cada<br/>dólar en efectivo.</h2>
+      </div>
+      <div class="desc">El apoyo en especie vale oro. ¿Tienes pintura, una guitarra vieja, una prensa de impresión o unas horas de asesoría legal? Escríbenos. El valor justo de mercado se registra para nuestros informes financieros y solicitudes de subvenciones.</div>
+    </div>
+
+    <div class="inkind-grid">
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Pintura y lienzos</span></div>
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Caballetes y pinceles</span></div>
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Instrumentos y equipo</span></div>
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Mesas y sillas</span></div>
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Muebles de almacenamiento</span></div>
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Impresión y diseño</span></div>
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Servicios de foto / video</span></div>
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Sitio web y hosting</span></div>
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Asesoría legal</span></div>
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Apoyo contable</span></div>
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Sonido e iluminación</span></div>
+      <div class="inkind-item"><span class="check-icon">+</span><span class="name">Comida y bebida</span></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 48px;">
+      <a href="contact.html" class="btn btn-primary">Ofrece algo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BOARD ===== -->
+<section class="app-section" id="board" data-screen-label="07 Board">
+  <div class="wrap">
+    <div class="app-grid">
+      <div class="app-text" data-reveal>
+        <div class="eyebrow">SERVICIO EN LA JUNTA DIRECTIVA · Compromiso fundador de dos años</div>
+        <h2>Ayúdanos a gobernar.</h2>
+        <p class="lede">La junta directiva fundadora está compuesta por cinco a siete directores. Cada uno aporta experiencia profesional, credibilidad comunitaria o ambas.</p>
+        <p>El servicio es un compromiso serio: reuniones trimestrales, trabajo en comités, responsabilidad financiera y participación plena en construir la institución correctamente desde el primer día. Los miembros de la junta directiva fundadora dan forma a lo que Luna llegará a ser.</p>
+        <p><strong>Puestos que estamos buscando:</strong></p>
+        <ul>
+          <li>Tesorero/a (supervisión financiera)</li>
+          <li>Secretario/a (cumplimiento, registros)</li>
+          <li>Representante de artistas</li>
+          <li>Representante de educación / juventud</li>
+          <li>Representante de recaudación de fondos / negocios</li>
+          <li>Representante de la comunidad / madres y padres</li>
+        </ul>
+      </div>
+
+      <div class="app-form-card" data-reveal style="--reveal-delay:0.1s;">
+        <div class="eyebrow">EXPRESA TU INTERÉS EN LA JUNTA DIRECTIVA</div>
+        <h3 style="font-size: 1.6rem; margin: 8px 0 20px;">Cuéntanos por qué este puesto es tuyo.</h3>
+        <form data-mock-submit data-form-type="board">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" />
+          <div class="form-grid-2">
+            <div class="field">
+              <label>Nombre</label>
+              <input type="text" required />
+              <div class="err">Obligatorio</div>
+            </div>
+            <div class="field">
+              <label>Correo electrónico</label>
+              <input type="email" required />
+              <div class="err">Obligatorio</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>LinkedIn / sitio web (opcional)</label>
+            <input type="url" placeholder="https://" />
+          </div>
+          <div class="field">
+            <label>¿Qué puesto te interesa?</label>
+            <select>
+              <option>Tesorero/a</option>
+              <option>Secretario/a</option>
+              <option>Representante de artistas</option>
+              <option>Representante de educación / juventud</option>
+              <option>Representante de recaudación de fondos / negocios</option>
+              <option>Representante de la comunidad / madres y padres</option>
+              <option>Abierto — aportaré mi experiencia donde encaje</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>¿Por qué este puesto? ¿Por qué ahora?</label>
+            <textarea required placeholder="Dos o tres párrafos breves. La experiencia vivida importa tanto como el currículum."></textarea>
+            <div class="err">Cuéntanos tu historia.</div>
+          </div>
+          <div class="submit">
+            <div class="fine">Revisado por el fundador y los puestos existentes.</div>
+            <button type="submit" class="btn btn-primary">Enviar interés</button>
+          </div>
+        </form>
+        <div class="success-state" style="display: none;">
+          <div class="moon">◑</div>
+          <h3>Recibido.</h3>
+          <p style="margin-top: 12px; color: var(--ink-soft);">Tendrás noticias nuestras en un plazo de dos semanas. Las juntas directivas fundadoras se construyen sobre la confianza — no tomamos las solicitudes a la ligera.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARTNER ===== -->
+<section class="app-section alt" id="partner" data-screen-label="08 Partner">
+  <div class="wrap">
+    <div class="app-grid">
+      <div class="app-text" data-reveal>
+        <div class="eyebrow">ALIADOS COMUNITARIOS</div>
+        <h2>El crecimiento más poderoso.</h2>
+        <p class="lede">Las alianzas traen público, credibilidad y, a menudo, apoyo en especie que costaría dinero real replicar. Son la manera en que una organización sin fines de lucro joven crece más allá de la red de su fundador.</p>
+        <p><strong>Aliados naturales desde el inicio:</strong></p>
+        <ul>
+          <li>Maestros de escuelas públicas y chárter de Wilmington</li>
+          <li>Escuelas públicas y parroquiales, programas extraescolares</li>
+          <li>Creative District Wilmington</li>
+          <li>Iglesias, comunidades de fe, centros comunitarios</li>
+          <li>Galerías, restaurantes y salas de música locales</li>
+          <li>Bartenders y redes del sector de servicios</li>
+        </ul>
+      </div>
+
+      <div class="app-form-card" data-reveal style="--reveal-delay:0.1s;">
+        <div class="eyebrow">INICIA UNA CONVERSACIÓN</div>
+        <h3 style="font-size: 1.6rem; margin: 8px 0 20px;">Cuéntanos sobre tu organización.</h3>
+        <form data-mock-submit data-form-type="partner">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" />
+          <div class="field">
+            <label>Nombre de la organización</label>
+            <input type="text" required />
+            <div class="err">Obligatorio</div>
+          </div>
+          <div class="form-grid-2">
+            <div class="field">
+              <label>Tu nombre</label>
+              <input type="text" required />
+              <div class="err">Obligatorio</div>
+            </div>
+            <div class="field">
+              <label>Correo electrónico</label>
+              <input type="email" required />
+              <div class="err">Obligatorio</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Tipo de organización</label>
+            <select>
+              <option>Escuela / distrito escolar</option>
+              <option>Programa extraescolar o juvenil</option>
+              <option>Iglesia / comunidad de fe</option>
+              <option>Centro comunitario</option>
+              <option>Galería u organización artística</option>
+              <option>Restaurante / sala de música</option>
+              <option>Pequeño negocio / hospitalidad</option>
+              <option>Fundación / financiador</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>¿Qué tipo de alianza tienes en mente?</label>
+            <textarea required placeholder="¿Programación conjunta? ¿Referencias? ¿Espacio compartido? ¿Intercambio en especie? Menciona lo que aportas y lo que te encantaría recibir."></textarea>
+            <div class="err">Obligatorio</div>
+          </div>
+          <div class="submit">
+            <div class="fine">Respondemos en menos de una semana.</div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </div>
+        </form>
+        <div class="success-state" style="display: none;">
+          <div class="moon">◑</div>
+          <h3>Gracias por escribirnos.</h3>
+          <p style="margin-top: 12px; color: var(--ink-soft);">Te contactaremos para agendar una llamada corta. Las alianzas avanzan rápido cuando hay buena sintonía.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-lockup">
+        <img src="../assets/logo.png" alt="Luna Arts Academy" />
+        <div class="name">Luna Arts Academy</div>
+        <div class="tagline">Donde Wilmington crea en conjunto.</div>
+        <p>Una academia de aprendizaje artístico multicultural sostenida por donaciones en la ribera de Wilmington.</p>
+      </div>
+      <div><h4>Visita</h4><ul><li><a href="about.html">Nosotros</a></li><li><a href="programs.html">Programas</a></li><li><a href="events.html">Eventos</a></li><li><a href="artists.html">Artistas</a></li><li><a href="contact.html">Contacto</a></li></ul></div>
+      <div><h4>Da</h4><ul><li><a href="donate.html">Donar</a><a href="../get-involved.html" lang="en">English</a></li><li><a href="donate.html#circle">Círculo Fundador</a></li><li><a href="get-involved.html#sponsor">Patrocina una clase</a></li><li><a href="get-involved.html#inkind">Donaciones en especie</a></li></ul></div>
+      <div><h4>Participa</h4><ul><li><a href="get-involved.html#volunteer">Voluntariado</a></li><li><a href="get-involved.html#instructor">Enseña una clase</a></li><li><a href="get-involved.html#board">Interés en la junta directiva</a></li><li><a href="get-involved.html#partner">Aliados comunitarios</a></li></ul></div>
+    </div>
+    <div class="footer-disclaim">Luna Arts Academy of Wilmington es una corporación sin fines de lucro de Delaware que busca el estatus de exención fiscal 501(c)(3). Las donaciones apoyan el aprendizaje artístico gratuito y basado en donaciones, materiales, instructores artistas locales, programación comunitaria y costos operativos. Los donantes pueden solicitar información sobre cómo se asignan las contribuciones.</div>
+    <div class="footer-bottom">
+      <div>© 2026 Luna Arts Academy of Wilmington · Wilmington, Delaware</div>
+      <div>Hecho con cariño junto al río.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

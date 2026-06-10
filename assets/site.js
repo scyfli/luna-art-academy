@@ -1,5 +1,5 @@
 /* =====================================================================
-   Luna Wilmington Arts Academy — Shared site JS
+   Luna Arts Academy of Wilmington — Shared site JS
    ===================================================================== */
 
 (function () {
@@ -65,7 +65,23 @@
   });
 
   /* —— Form mock submit: validates required, shows success state —— */
-  document.addEventListener('submit', (e) => {
+  const FORM_ENDPOINT = 'https://luna-forms.mark-sanders3.workers.dev';
+
+  function collectForm(form) {
+    const data = {};
+    const fd = new FormData(form);
+    for (const [k, v] of fd.entries()) {
+      if (k in data) {
+        if (!Array.isArray(data[k])) data[k] = [data[k]];
+        data[k].push(v);
+      } else {
+        data[k] = v;
+      }
+    }
+    return data;
+  }
+
+  document.addEventListener('submit', async (e) => {
     const form = e.target;
     if (!form.matches('[data-mock-submit]')) return;
     e.preventDefault();
@@ -79,14 +95,57 @@
       }
     });
     if (!ok) return;
-    // Show success
+
+    const payload = collectForm(form);
+    payload.formType = form.getAttribute('data-form-type') || 'contact';
+    const modal = form.closest('.modal');
+    if (modal) {
+      const t = modal.querySelector('[data-modal-title]');
+      const m = modal.querySelector('[data-modal-meta]');
+      if (t) payload.event = t.textContent.trim();
+      if (m) payload.when = m.textContent.trim();
+    }
+
+    const btn = form.querySelector('[type="submit"]');
+    const btnText = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
     const success = form.parentElement.querySelector('.success-state');
-    if (success) {
-      form.style.display = 'none';
-      success.style.display = 'block';
-    } else {
-      // inline-replace
-      form.innerHTML = '<div class="success-state"><div class="moon">◑</div><h3>Thank you.</h3><p>We\u2019ll be in touch from Wilmington soon.</p></div>';
+    const showSuccess = () => {
+      if (success) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        form.innerHTML = '<div class="success-state"><div class="moon">◑</div><h3>Thank you.</h3><p>We’ll be in touch from Wilmington soon.</p></div>';
+      }
+    };
+    const showError = (msg) => {
+      if (btn) { btn.disabled = false; btn.textContent = btnText; }
+      let note = form.querySelector('.form-error');
+      if (!note) {
+        note = document.createElement('div');
+        note.className = 'form-error';
+        note.style.cssText = 'margin-top:12px;color:var(--rose,#D6336C);font-size:0.9rem';
+        form.appendChild(note);
+      }
+      note.textContent = msg || 'Something went wrong — please email info@lunaartsacademy.org.';
+    };
+
+    if (!FORM_ENDPOINT || FORM_ENDPOINT.indexOf('REPLACE-WITH-SUBDOMAIN') !== -1) {
+      showError('Form delivery isn’t configured yet. Please email info@lunaartsacademy.org.');
+      return;
+    }
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('bad status ' + res.status);
+      showSuccess();
+    } catch (err) {
+      showError();
     }
   });
 

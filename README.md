@@ -1,8 +1,8 @@
 # The Luna Project
 
-The official website for **Luna Wilmington Arts Academy** — a donation-supported, multicultural arts academy founding in 2026 in Wilmington, Delaware.
+The official website for **Luna Arts Academy of Wilmington** — a donation-supported, multicultural arts academy founding in 2026 in Wilmington, Delaware.
 
-Public name: **Luna Art Academy** · Legal name: *Luna Wilmington Arts Academy, Inc.*
+Public name: **Luna Arts Academy** · Legal name: *Luna Arts Academy of Wilmington*
 
 > *Where Wilmington creates together.*
 
@@ -20,6 +20,7 @@ Public name: **Luna Art Academy** · Legal name: *Luna Wilmington Arts Academy, 
 | `get-involved.html` | Volunteer, instructor, board, sponsor, in-kind, partnership forms |
 | `donate.html` | 3-step Founding Circle flow + FAQ + funding mix |
 | `contact.html` | Address, hours, message form, map, press, socials |
+| `es/*.html` | Spanish mirror of all eight pages (language toggle in nav, hreflang on every page) |
 
 ## Assets
 
@@ -82,7 +83,7 @@ It's static HTML — drop the entire folder on any host (GitHub Pages, Netlify, 
 - [ ] Confirm legal disclosure copy with a nonprofit attorney
 - [ ] Add Google Analytics / Plausible / Fathom snippet
 - [ ] Add Open Graph / Twitter card images
-- [ ] Verify all email addresses (`hello@`, `alejandra@`, `press@`)
+- [x] Emails set: `info@lunaartsacademy.org`, `alejalafaro@lunaartsacademy.org`, `mark@lunaartsacademy.org`
 - [ ] Real Whale Building street address once lease is signed
 - [ ] Replace placeholder artist names with real founding instructors as they sign on
 - [ ] Real `favicon.ico` derived from the logo
@@ -91,6 +92,6 @@ It's static HTML — drop the entire folder on any host (GitHub Pages, Netlify, 
 
 ## Legal
 
-Luna Wilmington Arts Academy, Inc. is a Delaware nonprofit corporation seeking 501(c)(3) tax-exempt status. Donor disclosure language appears in the footer of every page per Delaware solicitation requirements.
+Luna Arts Academy of Wilmington is a Delaware nonprofit corporation seeking 501(c)(3) tax-exempt status. Donor disclosure language appears in the footer of every page per Delaware solicitation requirements.
 
-© 2026 Luna Wilmington Arts Academy, Inc. · Wilmington, Delaware.
+© 2026 Luna Arts Academy of Wilmington · Wilmington, Delaware.

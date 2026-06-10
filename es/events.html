@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Eventos · Luna Arts Academy</title>
+<meta name="description" content="Luna Nights, recaudaciones, micrófonos abiertos y mercados pop-up — el calendario completo de eventos de Luna en Wilmington, Delaware." />
+<link rel="icon" type="image/png" href="../assets/logo.png" />
+<link rel="canonical" href="https://lunaartsacademy.org/es/events" />
+<link rel="alternate" hreflang="en" href="https://lunaartsacademy.org/events" />
+<link rel="alternate" hreflang="es" href="https://lunaartsacademy.org/es/events" />
+<link rel="alternate" hreflang="x-default" href="https://lunaartsacademy.org/events" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Luna Arts Academy of Wilmington" />
+<meta property="og:title" content="Eventos · Luna Arts Academy" />
+<meta property="og:description" content="Luna Nights, recaudaciones, micrófonos abiertos y mercados pop-up — el calendario completo de eventos de Luna en Wilmington, Delaware." />
+<meta property="og:url" content="https://lunaartsacademy.org/es/events" />
+<meta property="og:image" content="https://lunaartsacademy.org/assets/logo.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Eventos · Luna Arts Academy" />
+<meta name="twitter:description" content="Luna Nights, recaudaciones, micrófonos abiertos y mercados pop-up — el calendario completo de eventos de Luna en Wilmington, Delaware." />
+<meta name="twitter:image" content="https://lunaartsacademy.org/assets/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/tokens.css" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  /* Featured event */
+  .featured {
+    padding: 40px 0 100px;
+  }
+  .featured-card {
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    box-shadow: var(--shadow-lift);
+    min-height: 480px;
+  }
+  @media (max-width: 900px) { .featured-card { grid-template-columns: 1fr; } }
+  .featured-art {
+    background: var(--paint-1);
+    position: relative;
+    min-height: 380px;
+  }
+  .featured-art .tag {
+    position: absolute; top: 24px; left: 24px;
+    padding: 8px 16px;
+    background: var(--moon);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  .featured-art .big-date {
+    position: absolute;
+    bottom: 24px; left: 24px;
+    font-family: var(--font-display);
+    color: var(--bone);
+    line-height: 1;
+  }
+  .featured-art .big-date .day {
+    font-size: clamp(4rem, 2rem + 8vw, 8rem);
+    font-weight: 900;
+    color: var(--moon);
+    text-shadow: 0 4px 20px rgba(42,21,56,0.4);
+  }
+  .featured-art .big-date .month {
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    color: var(--bone);
+  }
+  .featured-art .swoosh {
+    position: absolute; top: 40%; right: 10%;
+    font-size: 8rem;
+    font-family: var(--font-display);
+    color: rgba(251,246,236,0.18);
+    transform: rotate(-12deg);
+  }
+  .featured-body { padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; }
+  .featured-body .eyebrow { color: var(--rose); }
+  .featured-body h2 { font-size: var(--step-4); margin-top: 18px; margin-bottom: 14px; }
+  .featured-body p { color: var(--ink-soft); line-height: 1.65; margin-bottom: 16px; }
+  .featured-meta {
+    display: flex; flex-direction: column; gap: 8px;
+    margin: 20px 0 30px;
+    padding: 20px 0;
+    border-top: 1px solid var(--ink-line);
+    border-bottom: 1px solid var(--ink-line);
+  }
+  .featured-meta .row {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.92rem;
+  }
+  .featured-meta .row .key {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--plum);
+    text-transform: uppercase;
+    min-width: 80px;
+  }
+
+  /* Filter tabs */
+  .filters {
+    padding: 20px 0;
+    background: var(--cream);
+    border-top: 1px solid var(--ink-line);
+    border-bottom: 1px solid var(--ink-line);
+    position: sticky; top: 78px;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+  }
+  .filters .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .filter-tabs {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .filter-tabs button {
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+  }
+  .filter-tabs button:hover { color: var(--plum); border-color: var(--ink-line); }
+  .filter-tabs button.active {
+    background: var(--ink);
+    color: var(--bone);
+    border-color: var(--ink);
+  }
+  .filters .count {
+    font-size: 0.82rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Event row layout */
+  .events-list {
+    padding: 80px 0 60px;
+  }
+  .event-row {
+    display: grid;
+    grid-template-columns: 100px 1.4fr 1fr auto;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--ink-line);
+    align-items: center;
+    transition: padding-left 0.3s ease;
+  }
+  .event-row:hover { padding-left: 12px; }
+  @media (max-width: 900px) {
+    .event-row {
+      grid-template-columns: 80px 1fr;
+      gap: 18px 24px;
+    }
+    .event-row .meta-cell, .event-row .cta-cell {
+      grid-column: 2;
+    }
+  }
+  .event-row .date {
+    text-align: center;
+    background: var(--cream);
+    border-radius: var(--radius);
+    padding: 16px 8px;
+    border: 1px solid var(--ink-line);
+  }
+  .event-row .date .month {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--rose);
+  }
+  .event-row .date .day {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--plum);
+    margin: 4px 0;
+    font-weight: 700;
+  }
+  .event-row .date .weekday {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+  }
+  .event-row h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+    line-height: 1.15;
+  }
+  .event-row .descr {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+  .event-row .meta-cell {
+    display: flex; flex-direction: column; gap: 4px;
+    font-size: 0.85rem;
+  }
+  .event-row .meta-cell .row {
+    color: var(--ink-soft);
+    display: flex; gap: 8px;
+  }
+  .event-row .meta-cell .row .key {
+    color: var(--plum);
+    font-weight: 600;
+    min-width: 64px;
+  }
+  .event-row .cat-pill {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 3px 10px;
+    background: var(--moon);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .event-row .cat-pill.fundraiser { background: var(--rose); color: var(--bone); }
+  .event-row .cat-pill.luna-night { background: var(--plum); color: var(--bone); }
+  .event-row .cat-pill.community { background: var(--teal); color: var(--bone); }
+  .event-row .cat-pill.youth { background: var(--orange); color: var(--ink); }
+
+  /* Yearly rhythm strip */
+  .rhythm {
+    padding: 120px 0;
+    background:
+      radial-gradient(at 30% 30%, rgba(245,197,24,0.10), transparent 50%),
+      var(--cream);
+  }
+  .rhythm-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    margin-top: 50px;
+  }
+  @media (max-width: 900px) { .rhythm-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .rhythm-grid { grid-template-columns: 1fr; } }
+  .rhythm-card {
+    background: var(--shell);
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  .rhythm-card:hover { transform: translateY(-4px); }
+  .rhythm-card .num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: 1;
+    opacity: 0.5;
+    margin-bottom: 12px;
+  }
+  .rhythm-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  .rhythm-card p {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* RSVP modal styles already in site.css via .modal */
+  .rsvp-modal h3 {
+    font-size: var(--step-3);
+    margin-bottom: 6px;
+  }
+  .rsvp-modal .meta {
+    color: var(--rose);
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    margin-bottom: 26px;
+  }
+  .rsvp-modal form { display: flex; flex-direction: column; gap: 18px; }
+  .rsvp-modal .submit-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    margin-top: 8px;
+  }
+  .rsvp-modal .submit-row .fine {
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    flex: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="pulse">Año fundacional 2026 · Wilmington, Delaware</div>
+    <div class="right">
+      <span class="hideS">Una academia de artes sostenida por donaciones.</span>
+      <a href="donate.html">Únete al Círculo Fundador →</a>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">
+      <img src="../assets/logo.png" alt="Luna Arts Academy" />
+      <div class="lockup">Luna<small>Arts Academy</small></div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="about.html">Nosotros</a></li>
+      <li><a href="programs.html">Programas</a></li>
+      <li><a href="events.html" class="active">Eventos</a></li>
+      <li><a href="artists.html">Artistas</a></li>
+      <li><a href="get-involved.html">Participa</a></li>
+      <li><a href="contact.html">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="donate.html" class="btn btn-gold btn-sm">Donar</a>
+      <a href="../events.html" class="lang-toggle" lang="en" aria-label="English version">EN</a>
+      <button class="nav-burger" aria-label="Abrir menú" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer">
+  <button class="close" aria-label="Cerrar menú" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+  </button>
+  <a href="index.html">Inicio</a><a href="about.html">Nosotros</a><a href="programs.html">Programas</a><a href="events.html">Eventos</a><a href="artists.html">Artistas</a><a href="get-involved.html">Participa</a><a href="contact.html">Contacto</a><a href="donate.html">Donar</a><a href="../events.html" lang="en">English</a>
+</div>
+
+<section class="page-head" data-screen-label="01 Events head">
+  <div class="wrap-narrow">
+    <div class="eyebrow center" style="justify-content:center;">Eventos y calendario</div>
+    <h1>El año, en encuentros.</h1>
+    <p class="lede">El primer año es un año de visibilidad. Cada evento crea momentos — para participantes, donantes, la prensa y el vecindario. Ven una vez. Quédate para siempre.</p>
+  </div>
+</section>
+
+<!-- ===== FEATURED EVENT ===== -->
+<section class="featured" data-screen-label="02 Featured">
+  <div class="wrap">
+    <div class="featured-card" data-reveal>
+      <div class="featured-art">
+        <span class="tag">⌖ Destacado · Noche de lanzamiento</span>
+        <span class="swoosh">◑</span>
+        <div class="big-date">
+          <div class="day">22</div>
+          <div class="month">Mayo · Viernes · 7 PM</div>
+        </div>
+      </div>
+      <div class="featured-body">
+        <div class="eyebrow">La apertura</div>
+        <h2>Noche de Lanzamiento de Luna.</h2>
+        <p>Se abren las puertas. Un programa breve de música, pinturas en las paredes y la oportunidad de conocer a la junta fundadora y a los primeros artistas instructores. Vino, bocadillos y la primera Luna Night de muchas.</p>
+        <div class="featured-meta">
+          <div class="row"><span class="key">DÓNDE</span><span>El Whale Building · Wilmington, DE</span></div>
+          <div class="row"><span class="key">QUIÉN</span><span>Abierto al público · Todas las edades son bienvenidas</span></div>
+          <div class="row"><span class="key">COSTO</span><span>Gratis · Donaciones bienvenidas</span></div>
+          <div class="row"><span class="key">CUPO</span><span>~120 invitados · Reservación sugerida</span></div>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button type="button" class="btn btn-gold"
+            data-modal-open="rsvp-modal"
+            data-event-title="Noche de Lanzamiento de Luna"
+            data-event-meta="Viernes · 22 de mayo · 7 PM · El Whale Building">
+            Reserva — gratis
+          </button>
+          <a href="donate.html" class="btn btn-ghost">Patrocina la apertura</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FILTERS ===== -->
+<div class="filters" data-tabs data-tabs-target="#event-list">
+  <div class="wrap">
+    <div class="filter-tabs">
+      <button data-tab="all" class="active">Todos los eventos</button>
+      <button data-tab="luna-night">Luna Nights</button>
+      <button data-tab="fundraiser">Recaudaciones</button>
+      <button data-tab="community">Comunidad</button>
+      <button data-tab="youth">Niños y familia</button>
+    </div>
+    <div class="count">Primavera — Verano 2026</div>
+  </div>
+</div>
+
+<!-- ===== EVENT LIST ===== -->
+<section class="events-list" data-screen-label="03 Event list">
+  <div class="wrap" id="event-list">
+
+    <div class="event-row" data-cat="luna-night" data-reveal>
+      <div class="date"><div class="month">MAY</div><div class="day">22</div><div class="weekday">VIE</div></div>
+      <div>
+        <span class="cat-pill luna-night">Luna Night</span>
+        <h3>Noche de Lanzamiento de Luna</h3>
+        <div class="descr">Noche de apertura. Música, pinturas en las paredes y la oportunidad de conocer a la junta fundadora.</div>
+      </div>
+      <div class="meta-cell">
+        <div class="row"><span class="key">Horario</span><span>7:00 — 10:00 PM</span></div>
+        <div class="row"><span class="key">Costo</span><span>Gratis · Donaciones bienvenidas</span></div>
+        <div class="row"><span class="key">Edades</span><span>Todas las edades</span></div>
+      </div>
+      <div class="cta-cell">
+        <button type="button" class="btn btn-primary btn-sm" data-modal-open="rsvp-modal"
+          data-event-title="Noche de Lanzamiento de Luna"
+          data-event-meta="Viernes · 22 de mayo · 7 PM">Reserva</button>
+      </div>
+    </div>
+
+    <div class="event-row" data-cat="community" data-reveal>
+      <div class="date"><div class="month">MAY</div><div class="day">31</div><div class="weekday">SÁB</div></div>
+      <div>
+        <span class="cat-pill community">Comunidad</span>
+        <h3>Noche de Pintura Comunitaria — Inaugural</h3>
+        <div class="descr">La primera noche de pintura comunitaria en el nuevo espacio. Acrílicos sobre lienzo. Materiales incluidos.</div>
+      </div>
+      <div class="meta-cell">
+        <div class="row"><span class="key">Horario</span><span>6:30 — 8:30 PM</span></div>
+        <div class="row"><span class="key">Costo</span><span>Escala según posibilidades · $20 sugerido</span></div>
+        <div class="row"><span class="key">Edades</span><span>16+</span></div>
+      </div>
+      <div class="cta-cell">
+        <button type="button" class="btn btn-primary btn-sm" data-modal-open="rsvp-modal"
+          data-event-title="Noche de Pintura Comunitaria — Inaugural"
+          data-event-meta="Sábado · 31 de mayo · 6:30 PM">Reserva</button>
+      </div>
+    </div>
+
+    <div class="event-row" data-cat="fundraiser" data-reveal>
+      <div class="date"><div class="month">JUN</div><div class="day">13</div><div class="weekday">SÁB</div></div>
+      <div>
+        <span class="cat-pill fundraiser">Recaudación</span>
+        <h3>Paint the Moon — Recaudación Anual</h3>
+        <div class="descr">Una velada de pintura en vivo, subasta silenciosa y música. Reconocimiento a los donantes del Círculo Fundador.</div>
+      </div>
+      <div class="meta-cell">
+        <div class="row"><span class="key">Horario</span><span>6:00 — 10:00 PM</span></div>
+        <div class="row"><span class="key">Costo</span><span>Boletos en escala según posibilidades · $25 — $250</span></div>
+        <div class="row"><span class="key">Edades</span><span>21+</span></div>
+      </div>
+      <div class="cta-cell">
+        <button type="button" class="btn btn-primary btn-sm" data-modal-open="rsvp-modal"
+          data-event-title="Paint the Moon — Recaudación Anual"
+          data-event-meta="Sábado · 13 de junio · 6 PM">Boletos</button>
+      </div>
+    </div>
+
+    <div class="event-row" data-cat="youth" data-reveal>
+      <div class="date"><div class="month">JUN</div><div class="day">21</div><div class="weekday">SÁB</div></div>
+      <div>
+        <span class="cat-pill youth">Niños y familia</span>
+        <h3>Día de Arte en Familia — Solsticio de Verano</h3>
+        <div class="descr">Caballetes al aire libre, gises en la acera e historias familiares convertidas en collage. Puedes llegar sin inscripción.</div>
+      </div>
+      <div class="meta-cell">
+        <div class="row"><span class="key">Horario</span><span>11:00 AM — 2:00 PM</span></div>
+        <div class="row"><span class="key">Costo</span><span>Gratis</span></div>
+        <div class="row"><span class="key">Edades</span><span>5+ con un adulto</span></div>
+      </div>
+      <div class="cta-cell">
+        <button type="button" class="btn btn-primary btn-sm" data-modal-open="rsvp-modal"
+          data-event-title="Día de Arte en Familia — Solsticio de Verano"
+          data-event-meta="Sábado · 21 de junio · 11 AM">Reserva</button>
+      </div>
+    </div>
+
+    <div class="event-row" data-cat="community" data-reveal>
+      <div class="date"><div class="month">JUN</div><div class="day">26</div><div class="weekday">VIE</div></div>
+      <div>
+        <span class="cat-pill community">Corredor</span>
+        <h3>Música y Arte — Noche de Donantes</h3>
+        <div class="descr">Una velada en el Whale Building — músicos locales en vivo, un recorrido por la galería y una fiesta de corredor.</div>
+      </div>
+      <div class="meta-cell">
+        <div class="row"><span class="key">Horario</span><span>7:00 — 10:00 PM</span></div>
+        <div class="row"><span class="key">Costo</span><span>$15 sugerido · Donantes gratis</span></div>
+        <div class="row"><span class="key">Edades</span><span>Todas las edades</span></div>
+      </div>
+      <div class="cta-cell">
+        <button type="button" class="btn btn-primary btn-sm" data-modal-open="rsvp-modal"
+          data-event-title="Música y Arte — Noche de Donantes"
+          data-event-meta="Viernes · 26 de junio · 7 PM">Reserva</button>
+      </div>
+    </div>
+
+    <div class="event-row" data-cat="luna-night" data-reveal>
+      <div class="date"><div class="month">JUL</div><div class="day">17</div><div class="weekday">VIE</div></div>
+      <div>
+        <span class="cat-pill luna-night">Luna Night</span>
+        <h3>Luna Night #2 — Micrófono Abierto y Pintura en Vivo</h3>
+        <div class="descr">Micrófono abierto para poesía hablada y músicos. Dos pintores trabajando en vivo en el escenario. La primera luna de julio.</div>
+      </div>
+      <div class="meta-cell">
+        <div class="row"><span class="key">Horario</span><span>7:00 — 10:30 PM</span></div>
+        <div class="row"><span class="key">Costo</span><span>$10 sugerido · Gratis para quienes se presentan</span></div>
+        <div class="row"><span class="key">Edades</span><span>16+</span></div>
+      </div>
+      <div class="cta-cell">
+        <button type="button" class="btn btn-primary btn-sm" data-modal-open="rsvp-modal"
+          data-event-title="Luna Night #2 — Micrófono Abierto y Pintura en Vivo"
+          data-event-meta="Viernes · 17 de julio · 7 PM">Reserva</button>
+      </div>
+    </div>
+
+    <div class="event-row" data-cat="community" data-reveal>
+      <div class="date"><div class="month">JUL</div><div class="day">25</div><div class="weekday">SÁB</div></div>
+      <div>
+        <span class="cat-pill community">Pop-up</span>
+        <h3>Mercado de Artistas de Luna Llena</h3>
+        <div class="descr">15 creadores locales que conservan el 100% de sus ventas. Música afuera, arte adentro. Se repite cada trimestre.</div>
+      </div>
+      <div class="meta-cell">
+        <div class="row"><span class="key">Horario</span><span>12:00 — 6:00 PM</span></div>
+        <div class="row"><span class="key">Costo</span><span>Entrada gratis</span></div>
+        <div class="row"><span class="key">Edades</span><span>Todas las edades</span></div>
+      </div>
+      <div class="cta-cell">
+        <button type="button" class="btn btn-primary btn-sm" data-modal-open="rsvp-modal"
+          data-event-title="Mercado de Artistas de Luna Llena"
+          data-event-meta="Sábado · 25 de julio · Mediodía">Reserva</button>
+      </div>
+    </div>
+
+    <div class="event-row" data-cat="youth" data-reveal>
+      <div class="date"><div class="month">AGO</div><div class="day">08</div><div class="weekday">SÁB</div></div>
+      <div>
+        <span class="cat-pill youth">Niños y familia</span>
+        <h3>Muro de Arte Juvenil de Wilmington — Inauguración</h3>
+        <div class="descr">Se cuelga la primera galería estudiantil rotativa. Una muestra de cada pieza creada por los participantes más jóvenes de Luna.</div>
+      </div>
+      <div class="meta-cell">
+        <div class="row"><span class="key">Horario</span><span>2:00 — 4:00 PM</span></div>
+        <div class="row"><span class="key">Costo</span><span>Gratis</span></div>
+        <div class="row"><span class="key">Edades</span><span>Todas las edades</span></div>
+      </div>
+      <div class="cta-cell">
+        <button type="button" class="btn btn-primary btn-sm" data-modal-open="rsvp-modal"
+          data-event-title="Muro de Arte Juvenil de Wilmington — Inauguración"
+          data-event-meta="Sábado · 8 de agosto · 2 PM">Reserva</button>
+      </div>
+    </div>
+
+    <div class="event-row" data-cat="luna-night" data-reveal>
+      <div class="date"><div class="month">AGO</div><div class="day">21</div><div class="weekday">VIE</div></div>
+      <div>
+        <span class="cat-pill luna-night">Luna Night</span>
+        <h3>Luna Night #3 — Encuentro de Música y Pintura</h3>
+        <div class="descr">Sesión de DJ, lienzos abiertos y bebidas. El estudio transformado en una mezcla de galería y sala de estar.</div>
+      </div>
+      <div class="meta-cell">
+        <div class="row"><span class="key">Horario</span><span>8:00 — 11:00 PM</span></div>
+        <div class="row"><span class="key">Costo</span><span>$10 sugerido</span></div>
+        <div class="row"><span class="key">Edades</span><span>21+</span></div>
+      </div>
+      <div class="cta-cell">
+        <button type="button" class="btn btn-primary btn-sm" data-modal-open="rsvp-modal"
+          data-event-title="Luna Night #3 — Encuentro de Música y Pintura"
+          data-event-meta="Viernes · 21 de agosto · 8 PM">Reserva</button>
+      </div>
+    </div>
+
+    <div class="event-row" data-cat="fundraiser" data-reveal>
+      <div class="date"><div class="month">SEP</div><div class="day">12</div><div class="weekday">SÁB</div></div>
+      <div>
+        <span class="cat-pill fundraiser">Recaudación</span>
+        <h3>Wilmington Crea — Muestra y Subasta</h3>
+        <div class="descr">Obras estudiantiles del primer año subastadas para financiar el fondo de becas del segundo año. Con presentaciones de artistas destacados.</div>
+      </div>
+      <div class="meta-cell">
+        <div class="row"><span class="key">Horario</span><span>6:00 — 9:00 PM</span></div>
+        <div class="row"><span class="key">Costo</span><span>$25 — $150 en escala según posibilidades</span></div>
+        <div class="row"><span class="key">Edades</span><span>Todas las edades</span></div>
+      </div>
+      <div class="cta-cell">
+        <button type="button" class="btn btn-primary btn-sm" data-modal-open="rsvp-modal"
+          data-event-title="Wilmington Crea — Muestra y Subasta"
+          data-event-meta="Sábado · 12 de septiembre · 6 PM">Boletos</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== YEARLY RHYTHM ===== -->
+<section class="rhythm" data-screen-label="04 Rhythm">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">Lo que se repite</div>
+        <h2>El ritmo del año.</h2>
+      </div>
+      <div class="desc">El primer año se asienta en una cadencia constante — lo bastante predecible para los habituales, lo bastante fresca para quienes llegan por primera vez y lo bastante confiable para que los financiadores cuenten con ella.</div>
+    </div>
+
+    <div class="rhythm-grid">
+      <div class="rhythm-card" data-reveal>
+        <div class="num">12</div>
+        <h3>Luna Nights</h3>
+        <p>Una cada mes. Micrófono abierto, pintura en vivo o muestra — siempre gratis o en escala según posibilidades.</p>
+      </div>
+      <div class="rhythm-card" data-reveal style="--reveal-delay:0.05s;">
+        <div class="num">4</div>
+        <h3>Recaudaciones Trimestrales</h3>
+        <p>Eventos más grandes con boletos que anclan el calendario de donantes. Paint the Moon es el evento insignia.</p>
+      </div>
+      <div class="rhythm-card" data-reveal style="--reveal-delay:0.10s;">
+        <div class="num">36+</div>
+        <h3>Talleres y Clases</h3>
+        <p>El calendario de enseñanza — entre música, pintura y el método mensual rotativo.</p>
+      </div>
+      <div class="rhythm-card" data-reveal style="--reveal-delay:0.15s;">
+        <div class="num">8</div>
+        <h3>Días en Familia</h3>
+        <p>Sábados diseñados para que niños y padres creen lado a lado. Siempre gratis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RSVP MODAL ===== -->
+<div class="modal-backdrop" id="rsvp-modal">
+  <div class="modal rsvp-modal">
+    <button type="button" class="close" data-modal-close aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+    </button>
+    <div class="eyebrow" style="margin-bottom: 14px;">Reserva — gratis</div>
+    <h3 data-modal-title>Noche de Lanzamiento de Luna</h3>
+    <div class="meta" data-modal-meta>Viernes · 22 de mayo · 7 PM · El Whale Building</div>
+
+    <form data-mock-submit data-form-type="rsvp">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" />
+      <div class="field">
+        <label>Nombre completo</label>
+        <input type="text" name="name" required />
+        <div class="err">Necesitamos un nombre para guardar tu lugar.</div>
+      </div>
+      <div class="field">
+        <label>Correo electrónico</label>
+        <input type="email" name="email" required />
+        <div class="err">Un correo real nos ayuda a enviarte los detalles.</div>
+      </div>
+      <div class="field">
+        <label>¿Cuántas personas en tu grupo?</label>
+        <select name="guests">
+          <option>Solo yo</option>
+          <option>+1</option>
+          <option>+2</option>
+          <option>+3</option>
+          <option>+4 o más</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>¿Cómo te enteraste de Luna?</label>
+        <select name="referral">
+          <option>Me contó una amistad</option>
+          <option>Instagram / TikTok</option>
+          <option>El corredor del Whale Building</option>
+          <option>Prensa local</option>
+          <option>Boletín por correo</option>
+          <option>Pasaba por ahí</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="submit-row">
+        <div class="fine">Recibirás una confirmación por correo electrónico.</div>
+        <button type="submit" class="btn btn-primary">Guardar mi lugar</button>
+      </div>
+    </form>
+
+    <div class="success-state" style="display:none;">
+      <div class="moon">◑</div>
+      <h3>Estás en la lista.</h3>
+      <p style="margin-top: 14px; color: var(--ink-soft);">El correo de confirmación va en camino. Nos encantará verte.</p>
+      <button type="button" class="btn btn-ghost" data-modal-close style="margin-top: 26px;">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-lockup">
+        <img src="../assets/logo.png" alt="Luna Arts Academy" />
+        <div class="name">Luna Arts Academy</div>
+        <div class="tagline">Donde Wilmington crea en conjunto.</div>
+        <p>Una academia multicultural de aprendizaje artístico sostenida por donaciones en la ribera de Wilmington.</p>
+      </div>
+      <div><h4>Visita</h4><ul><li><a href="about.html">Nosotros</a></li><li><a href="programs.html">Programas</a></li><li><a href="events.html">Eventos</a></li><li><a href="artists.html">Artistas</a></li><li><a href="contact.html">Contacto</a></li></ul></div>
+      <div><h4>Dona</h4><ul><li><a href="donate.html">Donar</a><a href="../events.html" lang="en">English</a></li><li><a href="donate.html#circle">Círculo Fundador</a></li><li><a href="get-involved.html#sponsor">Patrocina una clase</a></li><li><a href="get-involved.html#inkind">Donaciones en especie</a></li></ul></div>
+      <div><h4>Participa</h4><ul><li><a href="get-involved.html#volunteer">Voluntariado</a></li><li><a href="get-involved.html#instructor">Enseña una clase</a></li><li><a href="get-involved.html#board">Interés en la junta</a></li><li><a href="get-involved.html#partner">Aliados comunitarios</a></li></ul></div>
+    </div>
+    <div class="footer-disclaim">Luna Arts Academy of Wilmington es una corporación sin fines de lucro de Delaware que busca el estatus de exención fiscal 501(c)(3). Las donaciones apoyan el aprendizaje artístico gratuito y basado en donaciones, materiales, instructores artistas locales, programación comunitaria y costos operativos. Los donantes pueden solicitar información sobre cómo se asignan las contribuciones.</div>
+    <div class="footer-bottom">
+      <div>© 2026 Luna Arts Academy of Wilmington · Wilmington, Delaware</div>
+      <div>Hecho con cariño junto al río.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

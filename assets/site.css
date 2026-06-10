@@ -1,5 +1,5 @@
 /* =====================================================================
-   Luna Wilmington Arts Academy — Shared site styles
+   Luna Arts Academy of Wilmington — Shared site styles
    Components, layout primitives, motion.
    ===================================================================== */
 
@@ -663,3 +663,15 @@ section { position: relative; }
   0%, 100% { transform: scale(1); opacity: 0.5; }
   50% { transform: scale(1.4); opacity: 1; }
 }
+
+/* —— Language toggle —— */
+.lang-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 38px; padding: 8px 12px;
+  border: 1px solid var(--ink-line);
+  border-radius: 999px;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--ink-soft); text-decoration: none;
+  transition: all 0.2s ease;
+}
+.lang-toggle:hover { border-color: var(--gold); color: var(--plum); }

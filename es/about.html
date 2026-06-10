@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nosotros · Luna Arts Academy · Wilmington, DE</title>
+<meta name="description" content="Una academia de artes multicultural y sostenida por donaciones en Wilmington, Delaware. Nuestra misión, la historia de la fundadora, la junta directiva y nuestros valores." />
+<link rel="icon" type="image/png" href="../assets/logo.png" />
+<link rel="canonical" href="https://lunaartsacademy.org/es/about" />
+<link rel="alternate" hreflang="en" href="https://lunaartsacademy.org/about" />
+<link rel="alternate" hreflang="es" href="https://lunaartsacademy.org/es/about" />
+<link rel="alternate" hreflang="x-default" href="https://lunaartsacademy.org/about" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Luna Arts Academy of Wilmington" />
+<meta property="og:title" content="Nosotros · Luna Arts Academy · Wilmington, DE" />
+<meta property="og:description" content="Una academia de artes multicultural y sostenida por donaciones en Wilmington, Delaware. Nuestra misión, la historia de la fundadora, la junta directiva y nuestros valores." />
+<meta property="og:url" content="https://lunaartsacademy.org/es/about" />
+<meta property="og:image" content="https://lunaartsacademy.org/assets/logo.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Nosotros · Luna Arts Academy · Wilmington, DE" />
+<meta name="twitter:description" content="Una academia de artes multicultural y sostenida por donaciones en Wilmington, Delaware. Nuestra misión, la historia de la fundadora, la junta directiva y nuestros valores." />
+<meta name="twitter:image" content="https://lunaartsacademy.org/assets/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/tokens.css" />
+<link rel="stylesheet" href="../assets/site.css" />
+<style>
+  .intro {
+    padding: 60px 0 100px;
+  }
+  .intro-grid {
+    display: grid; grid-template-columns: 0.95fr 1fr; gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .intro-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .intro h2 {
+    font-size: var(--step-5);
+    line-height: 1.0;
+  }
+  .intro p {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .intro p strong {
+    color: var(--ink);
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  /* Mission / Vision / Purpose pillars */
+  .mvp {
+    padding: 100px 0;
+    background:
+      radial-gradient(at 25% 30%, rgba(245,197,24,0.10), transparent 50%),
+      radial-gradient(at 75% 70%, rgba(214,51,108,0.08), transparent 50%),
+      var(--cream);
+    position: relative;
+  }
+  .mvp-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    margin-top: 60px;
+  }
+  @media (max-width: 900px) { .mvp-grid { grid-template-columns: 1fr; } }
+  .mvp-card {
+    background: var(--shell);
+    border-radius: var(--radius-xl);
+    padding: 36px 32px;
+    border: 1px solid var(--ink-line);
+    position: relative;
+    overflow: hidden;
+  }
+  .mvp-card::after {
+    content: "";
+    position: absolute; right: -40px; bottom: -40px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    opacity: 0.15;
+  }
+  .mvp-card.m::after { background: var(--moon); }
+  .mvp-card.v::after { background: var(--rose); }
+  .mvp-card.p::after { background: var(--teal); }
+  .mvp-card .num {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    color: var(--gold-deep);
+    margin-bottom: 18px;
+  }
+  .mvp-card h3 {
+    font-size: var(--step-3);
+    margin-bottom: 14px;
+  }
+  .mvp-card p {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+
+  /* Values */
+  .values {
+    padding: 120px 0;
+  }
+  .value-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px;
+    margin-top: 60px;
+    border: 1px solid var(--ink-line);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--ink-line);
+  }
+  @media (max-width: 700px) { .value-grid { grid-template-columns: 1fr; } }
+  .value {
+    background: var(--bone);
+    padding: 32px 30px;
+    transition: background 0.3s ease;
+    position: relative;
+  }
+  .value:hover { background: var(--cream); }
+  .value-num {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    color: var(--rose);
+    letter-spacing: 0.18em;
+    margin-bottom: 10px;
+  }
+  .value h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+  .value p { color: var(--ink-soft); line-height: 1.55; }
+
+  /* Founder long-form */
+  .founder-long {
+    padding: 120px 0;
+    background:
+      linear-gradient(180deg, var(--bone) 0%, var(--cream) 100%);
+  }
+  .founder-long-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .founder-long-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .founder-long .portrait {
+    aspect-ratio: 4/5;
+    border-radius: var(--radius-xl);
+    position: relative;
+    position: sticky;
+    top: 100px;
+  }
+  .founder-long h2 { font-size: var(--step-5); margin-bottom: 30px; }
+  .founder-long .lede {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    font-style: italic;
+    color: var(--plum);
+    margin-bottom: 26px;
+    line-height: 1.4;
+  }
+  .founder-long p { color: var(--ink-soft); line-height: 1.75; margin-bottom: 18px; }
+  .founder-long blockquote {
+    margin: 32px 0;
+    padding: 24px 28px;
+    border-left: 3px solid var(--gold);
+    background: var(--shell);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* Board */
+  .board-section {
+    padding: 120px 0;
+  }
+  .board-section .intro-text {
+    max-width: 60ch;
+    margin: 0 auto 60px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    font-style: italic;
+    line-height: 1.55;
+  }
+  .board-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+  }
+  @media (max-width: 900px) { .board-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .board-grid { grid-template-columns: 1fr; } }
+  .seat {
+    background: var(--shell);
+    border-radius: var(--radius-lg);
+    padding: 0;
+    border: 1px solid var(--ink-line);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .seat:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+  .seat .paint {
+    aspect-ratio: 5/4;
+    border-radius: 0;
+  }
+  .seat-body { padding: 22px 24px 26px; }
+  .seat .role {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    color: var(--rose);
+    margin-bottom: 8px;
+  }
+  .seat h3 { font-size: 1.4rem; margin-bottom: 6px; }
+  .seat .descr {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .seat.open {
+    background: transparent;
+    border: 2px dashed var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 40px 28px;
+    min-height: 280px;
+  }
+  .seat.open .role { color: var(--gold-deep); }
+  .seat.open h3 { color: var(--ink); margin-bottom: 14px; }
+  .seat.open p { color: var(--ink-soft); margin-bottom: 18px; font-size: 0.95rem; }
+
+  /* Timeline / launch plan */
+  .timeline-section {
+    padding: 120px 0;
+    background: var(--ink);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .timeline-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(at 80% 0%, rgba(245,197,24,0.18), transparent 50%),
+      radial-gradient(at 20% 100%, rgba(214,51,108,0.12), transparent 50%);
+    pointer-events: none;
+  }
+  .timeline {
+    position: relative;
+    margin-top: 60px;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 13px; top: 12px; bottom: 12px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--moon), var(--rose), var(--moon));
+    opacity: 0.5;
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 56px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -40px; top: 4px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 2px solid var(--moon);
+    box-shadow: 0 0 0 4px rgba(245,197,24,0.2);
+  }
+  .timeline-item .phase {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    color: var(--moon);
+    margin-bottom: 8px;
+  }
+  .timeline-item h3 {
+    font-size: var(--step-2);
+    color: var(--bone);
+    margin-bottom: 14px;
+  }
+  .timeline-item ul {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px;
+  }
+  @media (max-width: 700px) { .timeline-item ul { grid-template-columns: 1fr; } }
+  .timeline-item li {
+    color: rgba(251,246,236,0.78);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding-left: 20px;
+    position: relative;
+  }
+  .timeline-item li::before {
+    content: "◦";
+    position: absolute; left: 0;
+    color: var(--moon);
+  }
+
+  /* CTA closing */
+  .closing-cta {
+    padding: 140px 0;
+    text-align: center;
+  }
+  .closing-cta h2 {
+    font-size: var(--step-5);
+    max-width: 18ch;
+    margin: 0 auto 26px;
+  }
+  .closing-cta p {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 48ch;
+    margin: 0 auto 36px;
+  }
+  .closing-cta .actions {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="pulse">Año de fundación 2026 · Wilmington, Delaware</div>
+    <div class="right">
+      <span class="hideS">Una academia de artes sostenida por donaciones.</span>
+      <a href="donate.html">Únete al Círculo Fundador →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo">
+      <img src="../assets/logo.png" alt="Luna Arts Academy" />
+      <div class="lockup">Luna<small>Arts Academy</small></div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="about.html" class="active">Nosotros</a></li>
+      <li><a href="programs.html">Programas</a></li>
+      <li><a href="events.html">Eventos</a></li>
+      <li><a href="artists.html">Artistas</a></li>
+      <li><a href="get-involved.html">Participa</a></li>
+      <li><a href="contact.html">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="donate.html" class="btn btn-gold btn-sm">Donar</a>
+      <a href="../about.html" class="lang-toggle" lang="en" aria-label="English version">EN</a>
+      <button class="nav-burger" aria-label="Abrir menú" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer">
+  <button class="close" aria-label="Cerrar menú" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+  </button>
+  <a href="index.html">Inicio</a><a href="about.html">Nosotros</a><a href="programs.html">Programas</a><a href="events.html">Eventos</a><a href="artists.html">Artistas</a><a href="get-involved.html">Participa</a><a href="contact.html">Contacto</a><a href="donate.html">Donar</a><a href="../about.html" lang="en">English</a>
+</div>
+
+<!-- ===== PAGE HEAD ===== -->
+<section class="page-head" data-screen-label="01 About head">
+  <div class="wrap-narrow">
+    <div class="eyebrow center" style="justify-content:center;">Sobre Luna</div>
+    <h1>Una organización sin fines de lucro junto al río,<br/>construyendo el espacio que todos merecemos.</h1>
+    <p class="lede">Una hija de Wilmington que reúne a artistas locales, gobernanza con junta directiva y credibilidad comunitaria en un solo hogar sostenido por donaciones para la práctica creativa.</p>
+  </div>
+</section>
+
+<!-- ===== INTRO ===== -->
+<section class="intro" data-screen-label="02 Intro">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div data-reveal>
+        <div class="eyebrow">En un párrafo</div>
+        <h2 style="margin-top: 22px;">Wilmington tiene los artistas,<br/>el público y las ganas.</h2>
+      </div>
+      <div data-reveal style="--reveal-delay: 0.1s;">
+        <p>Lo que le falta es una <strong>academia de artes de puertas abiertas</strong> donde el costo nunca sea la barrera. Luna Arts Academy llena ese vacío con acceso basado en donaciones a la música, la pintura y un método artístico mensual rotativo.</p>
+        <p>Los programas son <strong>impartidos por artistas locales remunerados</strong>. La programación es multicultural por diseño. Las puertas están abiertas a todas las edades y a todos los niveles de ingreso.</p>
+        <p>Somos una corporación sin fines de lucro de Delaware en proceso de obtener el reconocimiento 501(c)(3). Gobernada por una junta directiva independiente. Construida para durar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MISSION / VISION / PURPOSE ===== -->
+<section class="mvp" data-screen-label="03 MVP">
+  <div class="wrap">
+    <div class="section-head" data-reveal style="grid-template-columns: 1fr;">
+      <div>
+        <div class="eyebrow">Lo que somos</div>
+        <h2 style="margin-top: 18px;">Misión, visión y propósito.</h2>
+      </div>
+    </div>
+
+    <div class="mvp-grid">
+      <div class="mvp-card m" data-reveal>
+        <div class="num">/ 01 — MISIÓN</div>
+        <h3>Equidad artística en cada cuadra.</h3>
+        <p>Luna amplía la equidad artística en Wilmington al ofrecer aprendizaje creativo sostenido por donaciones — música, pintura y experiencias artísticas multiculturales rotativas para personas de todas las edades — poniendo en el centro a los artistas locales, la inclusión cultural y la convicción de que todos merecen espacio, herramientas y comunidad para crear.</p>
+      </div>
+      <div class="mvp-card v" data-reveal style="--reveal-delay: 0.1s;">
+        <div class="num">/ 02 — VISIÓN</div>
+        <h3>Una ciudad donde todos crean.</h3>
+        <p>Un Wilmington donde cada persona — sin importar su edad, sus ingresos, su origen o su experiencia — tenga acceso a la alegría, la disciplina, la sanación y la oportunidad de hacer arte.</p>
+      </div>
+      <div class="mvp-card p" data-reveal style="--reveal-delay: 0.2s;">
+        <div class="num">/ 03 — PROPÓSITO</div>
+        <h3>Derribar la barrera.</h3>
+        <p>Luna existe para eliminar las barreras entre la gente común y la creación artística. Un niño que toca un instrumento por primera vez. Un adulto que vuelve a la pintura después de años. Una artista local que enseña, y recibe pago por ello. Una comunidad que se encuentra entre culturas a través de la creatividad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VALUES ===== -->
+<section class="values" data-screen-label="04 Values">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <div class="eyebrow">Lo que sostenemos</div>
+        <h2>Siete valores<br/>que guían cada decisión.</h2>
+      </div>
+      <div class="desc">Desde la contratación hasta la programación y quién tiene un lugar en la mesa — estos son los principios que orientan cada paso del trabajo.</div>
+    </div>
+
+    <div class="value-grid" data-reveal>
+      <div class="value">
+        <div class="value-num">VALOR 01</div>
+        <h3>Equidad artística</h3>
+        <p>La educación creativa no debería depender del dinero, los contactos ni la formación académica.</p>
+      </div>
+      <div class="value">
+        <div class="value-num">VALOR 02</div>
+        <h3>Inclusión</h3>
+        <p>Todas las edades, culturas, niveles de habilidad e identidades son bienvenidas — sin condiciones.</p>
+      </div>
+      <div class="value">
+        <div class="value-num">VALOR 03</div>
+        <h3>Liderazgo local</h3>
+        <p>Artistas, músicos, maestros, estudiantes, trabajadores de servicio y dueños de pequeños negocios de Wilmington dan forma a la organización.</p>
+      </div>
+      <div class="value">
+        <div class="value-num">VALOR 04</div>
+        <h3>Expresión multicultural</h3>
+        <p>El centro honra muchas tradiciones, sonidos, estilos y métodos creativos — programados por diseño, no como un añadido de último momento.</p>
+      </div>
+      <div class="value">
+        <div class="value-num">VALOR 05</div>
+        <h3>Dignidad para los artistas</h3>
+        <p>Los artistas locales son tratados como educadores, trabajadores culturales y constructores de comunidad. Reciben pago por su labor.</p>
+      </div>
+      <div class="value">
+        <div class="value-num">VALOR 06</div>
+        <h3>Acceso basado en donaciones</h3>
+        <p>Nadie queda fuera por no poder pagar. La escala flexible, el paga-lo-que-puedas y las opciones gratuitas son la norma — no la excepción.</p>
+      </div>
+      <div class="value">
+        <div class="value-num">VALOR 07</div>
+        <h3>Comunidad antes que perfección</h3>
+        <p>La meta es la participación, la confianza, la visibilidad y la conexión — no el elitismo. Presentarse y participar importa más que la perfección técnica.</p>
+      </div>
+      <div class="value" style="background: linear-gradient(135deg, var(--plum) 0%, var(--plum-deep) 100%); color: var(--bone);">
+        <div class="value-num" style="color: var(--moon);">— NUESTRA PROMESA</div>
+        <h3 style="color: var(--bone);">Wilmington primero.</h3>
+        <p style="color: rgba(251,246,236,0.85);">Si una decisión ayuda a Luna a crecer pero no sirve a la gente de Wilmington, no la tomamos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOUNDER LONG ===== -->
+<section class="founder-long" data-screen-label="05 Founder long">
+  <div class="wrap">
+    <div class="founder-long-grid">
+      <div class="portrait paint pcool" data-reveal>
+        <span class="tag">Fundadora · imagen provisional</span>
+        <span class="label">Alejandra · Fundadora y Directora Ejecutiva Propuesta</span>
+      </div>
+      <div data-reveal style="--reveal-delay: 0.1s;">
+        <div class="eyebrow">Conoce a la fundadora</div>
+        <h2 style="margin-top: 18px;">Alejandra creció aquí.</h2>
+        <p class="lede">Una hija de Wilmington de 32 años, con profundas raíces familiares, culturales y de la industria de servicios en la ciudad.</p>
+        <p>Su red abarca la hospitalidad, las artes locales y los pequeños negocios — alcance de público, caminos hacia alianzas y credibilidad comunitaria desde el primer día. El tipo de cimiento que un nuevo espacio artístico normalmente tarda sus primeros tres años en construir.</p>
+        <p>Luna nace de una observación sencilla: Wilmington está llena de potencial creativo, y de una población que vive el arte sobre todo como público y no como creadora. Las clases privadas, los programas extracurriculares, la educación continua para adultos — cuestan cientos de dólares al mes. Para las familias trabajadoras, los hogares de la industria de servicios y los adultos que retoman la práctica creativa más tarde en la vida, esos números funcionan como un muro.</p>
+        <blockquote>
+          Una organización sin fines de lucro no tiene dueño privado. Luna no es <em>mía</em>. La gobierna una junta directiva independiente y existe para el beneficio público. Mi papel es sostener la puerta abierta detrás de mí.
+        </blockquote>
+        <p>Alejandra se desempeña como <strong>Fundadora y Directora Ejecutiva Propuesta</strong>. Su compensación es fijada, aprobada y revisada por miembros independientes de la junta, documentada como razonable y mantenida completamente separada de cualquier beneficio a los negocios cercanos a la sede propuesta.</p>
+        <p>Política de conflictos de interés. Declaraciones anuales. Protocolos de recusación. Líneas claras. La confianza que le pedimos a Wilmington, la ganamos cada trimestre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BOARD ===== -->
+<section class="board-section" data-screen-label="06 Board">
+  <div class="wrap">
+    <div class="section-head" data-reveal style="grid-template-columns: 1fr; text-align: center;">
+      <div>
+        <div class="eyebrow center" style="justify-content:center;">La Junta Fundadora</div>
+        <h2 style="margin-top: 18px;">De cinco a siete puestos.<br/>Cada uno aporta experiencia <em>y</em> comunidad.</h2>
+      </div>
+    </div>
+    <p class="intro-text" data-reveal>La junta fundadora adopta estatutos, una política de conflictos de interés, controles financieros, reglas de aceptación de donativos, una política de protección infantil y una política de pago a artistas — todo antes de que comience cualquier recaudación seria.</p>
+
+    <div class="board-grid">
+      <div class="seat" data-reveal>
+        <div class="paint pwarm">
+          <span class="tag">Puesto de la junta</span>
+        </div>
+        <div class="seat-body">
+          <div class="role">PRESIDENCIA</div>
+          <h3>Presidencia de la Junta</h3>
+          <div class="descr">Responsabilidad principal de la gobernanza y el liderazgo de la junta. Define el ritmo de las reuniones y cuida la estrategia.</div>
+        </div>
+      </div>
+      <div class="seat" data-reveal style="--reveal-delay:0.05s;">
+        <div class="paint p2">
+          <span class="tag">Puesto de la junta</span>
+        </div>
+        <div class="seat-body">
+          <div class="role">TESORERÍA</div>
+          <h3>Supervisión Financiera</h3>
+          <div class="descr">Responsable de la política de controles financieros, las conciliaciones mensuales y el informe financiero trimestral para la junta.</div>
+        </div>
+      </div>
+      <div class="seat" data-reveal style="--reveal-delay:0.10s;">
+        <div class="paint p3">
+          <span class="tag">Puesto de la junta</span>
+        </div>
+        <div class="seat-body">
+          <div class="role">SECRETARÍA</div>
+          <h3>Cumplimiento y Registros</h3>
+          <div class="descr">Cumplimiento, actas y conservación de documentos. Mantiene el registro documental que genera confianza.</div>
+        </div>
+      </div>
+      <div class="seat" data-reveal style="--reveal-delay:0.15s;">
+        <div class="paint p4">
+          <span class="tag">Puesto de la junta</span>
+        </div>
+        <div class="seat-body">
+          <div class="role">REPRESENTANTE ARTISTA</div>
+          <h3>Artista en Activo</h3>
+          <div class="descr">Proviene de los artistas en activo de Wilmington. La voz que mantiene el diseño de los programas fiel a la práctica real.</div>
+        </div>
+      </div>
+      <div class="seat" data-reveal style="--reveal-delay:0.20s;">
+        <div class="paint pcool">
+          <span class="tag">Puesto de la junta</span>
+        </div>
+        <div class="seat-body">
+          <div class="role">REPRESENTANTE EDUCATIVO</div>
+          <h3>Juventud y Escuelas</h3>
+          <div class="descr">Experiencia en escuelas o programas extracurriculares. Garantiza la protección infantil, el diseño apropiado para cada edad y las alianzas escolares.</div>
+        </div>
+      </div>
+      <div class="seat" data-reveal style="--reveal-delay:0.25s;">
+        <div class="paint pwarm">
+          <span class="tag">Puesto de la junta</span>
+        </div>
+        <div class="seat-body">
+          <div class="role">RECAUDACIÓN</div>
+          <h3>Negocios y Filantropía</h3>
+          <div class="descr">Relaciones en los negocios locales, los bienes raíces o la filantropía. Responsable de desarrollar la cartera de patrocinios.</div>
+        </div>
+      </div>
+      <div class="seat" data-reveal style="--reveal-delay:0.30s;">
+        <div class="paint p2">
+          <span class="tag">Puesto de la junta</span>
+        </div>
+        <div class="seat-body">
+          <div class="role">REPRESENTANTE COMUNITARIO</div>
+          <h3>Voz de Familias y Estudiantes</h3>
+          <div class="descr">Un miembro de la comunidad, una madre, un padre o un estudiante. El contrapeso de experiencia vivida en cada decisión de programa.</div>
+        </div>
+      </div>
+      <div class="seat open" data-reveal style="--reveal-delay:0.35s;">
+        <div>
+          <div class="role">INVITACIÓN ABIERTA</div>
+          <h3>El puesto 8 es tuyo.</h3>
+          <p>Trae tu experiencia, tu vivencia y las ganas de arremangarte. El servicio en la junta fundadora es un compromiso de dos años.</p>
+          <a href="get-involved.html#board" class="btn btn-primary btn-sm">Expresa tu interés</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section class="timeline-section" data-screen-label="07 Timeline">
+  <div class="wrap">
+    <div class="section-head" data-reveal style="grid-template-columns: 1fr;">
+      <div>
+        <div class="eyebrow">Plan de lanzamiento del primer año</div>
+        <h2 style="color: var(--bone);">Doce meses,<br/>tres fases.</h2>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-reveal>
+        <div class="phase">DÍAS 0 — 90 · INCORPORAR</div>
+        <h3>Poner en pie la organización.</h3>
+        <ul>
+          <li>Confirmar la disponibilidad del nombre en Delaware</li>
+          <li>Reclutar la junta fundadora</li>
+          <li>Redactar los estatutos y la política de conflictos de interés</li>
+          <li>Incorporarse como organización sin fines de lucro de Delaware</li>
+          <li>Obtener el EIN y abrir la cuenta bancaria de la organización</li>
+          <li>Crear la identidad de marca provisional</li>
+          <li>Confirmar la viabilidad del Whale Building</li>
+          <li>Configurar la plataforma de donaciones</li>
+          <li>Construir la lista de donantes fundadores</li>
+          <li>Organizar un primer encuentro de pre-lanzamiento</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item" data-reveal style="--reveal-delay: 0.1s;">
+        <div class="phase">MESES 4 — 6 · PILOTO</div>
+        <h3>Echar a andar los programas.</h3>
+        <ul>
+          <li>Lanzar talleres piloto de pintura</li>
+          <li>Lanzar sesiones piloto de música</li>
+          <li>Estrenar el primer método rotativo</li>
+          <li>Organizar la primera recaudación pública</li>
+          <li>Presentar el Formulario 1023 del IRS</li>
+          <li>Crear la base de datos de voluntariado</li>
+          <li>Documentar asistencia y demografía</li>
+          <li>Comenzar a construir relaciones para subvenciones</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item" data-reveal style="--reveal-delay: 0.2s;">
+        <div class="phase">MESES 7 — 12 · CRECER</div>
+        <h3>Construir el ritmo.</h3>
+        <ul>
+          <li>Calendario mensual de programación constante</li>
+          <li>Asegurar de 3 a 5 negocios patrocinadores</li>
+          <li>Abrir el círculo de donantes Luminaria Fundadora</li>
+          <li>Organizar una muestra trimestral</li>
+          <li>Crear 3 o más alianzas con escuelas y la comunidad</li>
+          <li>Solicitar subvenciones para las artes y de arranque</li>
+          <li>Publicar el primer informe de impacto comunitario</li>
+          <li>Revisar la compensación de la fundadora frente a los ingresos reales</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLOSING CTA ===== -->
+<section class="closing-cta" data-screen-label="08 Closing">
+  <div class="wrap" data-reveal>
+    <h2>Ayúdanos a abrir la puerta.</h2>
+    <p>Cada donante fundador, candidato a la junta, negocio patrocinador, instructor y voluntario hace posible el primer año.</p>
+    <div class="actions">
+      <a href="donate.html" class="btn btn-gold">Únete al Círculo Fundador</a>
+      <a href="get-involved.html" class="btn btn-ghost">Descubre todas las formas de participar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-lockup">
+        <img src="../assets/logo.png" alt="Luna Arts Academy" />
+        <div class="name">Luna Arts Academy</div>
+        <div class="tagline">Donde Wilmington crea en conjunto.</div>
+        <p>Una academia de aprendizaje artístico multicultural y sostenida por donaciones en la ribera de Wilmington.</p>
+      </div>
+      <div><h4>Visita</h4><ul><li><a href="about.html">Nosotros</a></li><li><a href="programs.html">Programas</a></li><li><a href="events.html">Eventos</a></li><li><a href="artists.html">Artistas</a></li><li><a href="contact.html">Contacto</a></li></ul></div>
+      <div><h4>Aporta</h4><ul><li><a href="donate.html">Donar</a><a href="../about.html" lang="en">English</a></li><li><a href="donate.html#circle">Círculo Fundador</a></li><li><a href="get-involved.html#sponsor">Patrocina una clase</a></li><li><a href="get-involved.html#inkind">Donaciones en especie</a></li></ul></div>
+      <div><h4>Participa</h4><ul><li><a href="get-involved.html#volunteer">Voluntariado</a></li><li><a href="get-involved.html#instructor">Enseña una clase</a></li><li><a href="get-involved.html#board">Interés en la junta</a></li><li><a href="get-involved.html#partner">Aliados comunitarios</a></li></ul></div>
+    </div>
+    <div class="footer-disclaim">Luna Arts Academy of Wilmington es una corporación sin fines de lucro de Delaware que busca el estatus de exención fiscal 501(c)(3). Las donaciones apoyan el aprendizaje artístico gratuito y basado en donaciones, materiales, instructores artistas locales, programación comunitaria y costos operativos. Los donantes pueden solicitar información sobre cómo se asignan las contribuciones.</div>
+    <div class="footer-bottom">
+      <div>© 2026 Luna Arts Academy of Wilmington · Wilmington, Delaware</div>
+      <div>Hecho con cariño junto al río.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>
